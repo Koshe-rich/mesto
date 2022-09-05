@@ -2,3 +2,16 @@
     max-width: 142px;
     width: 100%;
 }
+
+/* @media (max-width: 1024px) {
+    .header__logo {
+        margin-left: 30px;
+        margin-left: calc(27px + (0 - 27) * ((100vw - 320px) / (1024 - 320)));
+    }
+} */
+
+@media (max-width: 320px) {
+    .header__logo {
+        max-width: 104px;
+    }
+}
