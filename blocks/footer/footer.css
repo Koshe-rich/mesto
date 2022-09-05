@@ -1,0 +1,11 @@
+.footer {
+    margin-left: 200px;
+    max-width: 318px;
+    width: 100%;
+}
+
+@media (max-width: 1280px) {
+    .footer {
+        /* margin-left: calc(19px + (200 - 19) * ((100vw - 320px) / (1280 - 320))); */
+    }
+}
