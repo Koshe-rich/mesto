@@ -1,0 +1,29 @@
+.popup__btn-close {
+    background-image: url(../../../images/Close_Icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    margin-left: 465px;
+    padding-left: 32px;
+    padding-bottom: 32px;
+    cursor: pointer;
+    background-color: #000;
+    margin-bottom: 8px;
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+    padding-top: 0;
+}
+
+@media (max-width: 768px) {
+    .popup__btn-close {
+        /* margin-left: 400px; */
+        margin-left: calc(275px + (465 - 275) * (100vw - 320px) / ((768 - 320)));
+        margin-bottom: 16px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+.popup__btn-close:hover {
+    opacity: 0.6;
+}

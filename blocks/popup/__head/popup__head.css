@@ -1,0 +1,15 @@
+.popup__head {
+    color: #000;
+    margin-top: 34px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+}
+
+@media (max-width: 768px) {
+    .popup__head {
+        font-size: calc(18px + (24 - 18) * ((100vw - 320px) / (768 - 320)));
+        line-height: 22px;
+    }
+}

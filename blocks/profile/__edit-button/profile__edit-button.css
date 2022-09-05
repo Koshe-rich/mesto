@@ -13,6 +13,11 @@
     padding: 0 0;
 }
 
+.profile__edit-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
 @media (max-width: 900px) {
     .profile__edit-button {
         margin-top: 8px;
