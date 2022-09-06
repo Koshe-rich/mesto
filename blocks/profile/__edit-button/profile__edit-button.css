@@ -8,7 +8,7 @@
     max-width: 24px;
     max-height: 24px;
     width: 100%;
-    margin-left: 0;
+    margin-left: 18px;
     margin-top: 15px;
     padding: 0 0;
 }
@@ -23,5 +23,6 @@
         margin-top: 8px;
         max-width: 18px;
         max-height: 18px;
+        margin-left: 10px;
     }
 }

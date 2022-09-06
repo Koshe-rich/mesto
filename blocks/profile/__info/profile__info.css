@@ -1,5 +1,6 @@
 .profile__info {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     max-width: 336px;
     width: 100%;
@@ -10,8 +11,6 @@
 
 @media (max-width: 900px) {
     .profile__info {
-        /* padding-left: calc(10px + (0 - 10) * ((100vw - 768px) / (900 - 768)));
-        padding-right: calc(10px + (0 - 10) * ((100vw - 768px) / (900 - 768))); */
         margin-left: 0px;
     }
 }
