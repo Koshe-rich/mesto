@@ -10,7 +10,7 @@
 
 @media (max-width: 900px) {
     .footer__copyright {
-        margin-left: calc(19px + (55 - 19) * ((100vw - 320px)/ (900 - 320)))
+        margin-left: calc(19px + (55 - 19) * ((100vw - 320px)/ (900 - 320)));
     }
 }
 
