@@ -8,3 +8,7 @@
     max-width: 100%;
     background-color: #000;
 }
+
+.page.popup_opened {
+    overflow: hidden;
+}
