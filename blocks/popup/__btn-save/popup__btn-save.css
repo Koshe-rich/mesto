@@ -13,8 +13,8 @@
     margin-bottom: 37px;
     border-radius: 2px;
     border: none;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .popup__btn-save:hover {

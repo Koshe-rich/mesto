@@ -11,6 +11,6 @@
 
 @media (max-width: 900px) {
     .profile__info {
-        margin-left: 0px;
+        margin-left: 0;
     }
 }

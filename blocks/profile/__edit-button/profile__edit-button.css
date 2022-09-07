@@ -4,13 +4,12 @@
     background-position: center;
     background-size: auto;
     border: 1px solid #fff;
-    background-color: #000;
-    max-width: 24px;
-    max-height: 24px;
-    width: 100%;
+    background-color: transparent;
+    width: 24px;
+    height: 24px;
     margin-left: 18px;
     margin-top: 15px;
-    padding: 0 0;
+    padding: 0;
 }
 
 .profile__edit-button:hover {
@@ -21,8 +20,8 @@
 @media (max-width: 900px) {
     .profile__edit-button {
         margin-top: 8px;
-        max-width: 18px;
-        max-height: 18px;
+        width: 18px;
+        height: 18px;
         margin-left: 10px;
     }
 }

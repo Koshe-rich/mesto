@@ -1,4 +1,5 @@
 .element__mask {
+    display: block;
     object-fit: cover;
     max-width: 282px;
     min-height: 282px;
