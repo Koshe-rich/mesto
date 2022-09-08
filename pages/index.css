@@ -19,13 +19,13 @@
 @import url(../blocks/element/__place-name/element__place-name.css);
 @import url(../blocks/element/__info/element__info.css);
 @import url(../blocks/footer/footer.css);
-@import url(../blocks/footer/__copygight/footer__copyright.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__btn-close/popup__btn-close.css);
 @import url(../blocks/popup/__btn-save/popup__btn-save.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__input/_description/popup__input_description.css);
+@import url(../blocks/popup/__input/_line/popup__input_line_description.css);
 @import url(../blocks/popup/__head/popup__head.css);
-@import url(../blocks/popup/__input/_name/popup__input_name.css);
+@import url(../blocks/popup/__input/_line/popup__input_line_name.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__input/popup__input.css);

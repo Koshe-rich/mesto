@@ -1,5 +1,4 @@
-.popup__description {
-    margin-top: 30px;
+.popup__input {
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 400;
@@ -7,7 +6,7 @@
     max-width: 358px;
     width: 100%;
     border: none;
-    border-bottom: solid 1px #000;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 13px;
@@ -15,6 +14,6 @@
     outline: none;
 }
 
-.popup__description:focus {
+.popup__input:focus {
     background-color: rgba(0, 0, 0, 0.2);
 }

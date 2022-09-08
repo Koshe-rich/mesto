@@ -11,80 +11,83 @@
 <body class="page">
     <div class="wrapper">
         <header class="header">
-            <img src="./images/logo.svg" alt="логотип" class="header__logo">
+            <img src="./images/logo.svg" alt="Логотип проекта 'Место'" class="header__logo">
         </header>
         <main class="content">
             <section class="profile">
-                <img src="./images/image.jpg" alt="аватар" class="profile__avatar-photo">
+                <img src="./images/image.jpg" alt="Изображен Жак-Ив Кусто" class="profile__avatar-photo">
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button" type="button" aria-label="edit"></button>
+                    <button class="profile__edit-button" type="button" aria-label="Изменить"></button>
                     <p class="profile__description">Исследователь океана</p>
                 </div>
-                <button class="profile__add-button" type="button" aria-label="add"></button>
+                <button class="profile__add-button" type="button" aria-label="Добавить"></button>
             </section>
             <section class="elements">
                 <div class="element">
-                    <img src="./images/la-dune-du-pyla-with-blue-sky-aquitaine-france_109442-620.jpg" alt="Дюна"
-                        class="element__mask">
+                    <img src="./images/la-dune-du-pyla-with-blue-sky-aquitaine-france_109442-620.jpg"
+                        alt="Море во Франции с большой песчаной дюной" class="element__mask">
                     <div class="element__info">
                         <h2 class="element__place-name">Дюна Пилат</h2>
-                        <button class="element__btn-like" type="button" aria-label="like"></button>
+                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/belobejskaya_pusha.jpg" alt="Беловежская пуща" class="element__mask">
                     <div class="element__info">
                         <h2 class="element__place-name">Беловежская пуща</h2>
-                        <button class="element__btn-like" type="button" aria-label="like"></button>
+                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
                     </div>
                 </div>
                 <div class="element">
-                    <img src="./images/campeche-690x355-1.jpg" alt="Кампече" class="element__mask">
+                    <img src="./images/campeche-690x355-1.jpg" alt="Улица с разноцветными домами, Мексика, г. Кампече"
+                        class="element__mask">
                     <div class="element__info">
-                        <h2 class="element__place-name">Сан-Франциско-де-Кампе́че</h2>
-                        <button class="element__btn-like" type="button" aria-label="like"></button>
+                        <h2 class="element__place-name">Сан-Франциско-де-Кампе&#769;че</h2>
+                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
                     </div>
                 </div>
                 <div class="element">
-                    <img src="./images/lake.jpg" alt="Озеро Брайес" class="element__mask">
+                    <img src="./images/lake.jpg" alt="Горы, Озеро Брайес с изумрудной водой" class="element__mask">
                     <div class="element__info">
                         <h2 class="element__place-name">Озеро Брайес</h2>
-                        <button class="element__btn-like" type="button" aria-label="like"></button>
+                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
                     </div>
                 </div>
                 <div class="element">
-                    <img src="./images/00_samarkand.jpg" alt="Самарканд" class="element__mask">
+                    <img src="./images/00_samarkand.jpg" alt="Площадь Регистан в центре Самарканда"
+                        class="element__mask">
                     <div class="element__info">
                         <h2 class="element__place-name">Самарканд</h2>
-                        <button class="element__btn-like" type="button" aria-label="like"></button>
+                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
                     </div>
                 </div>
                 <div class="element">
-                    <img src="./images/Mustang.jpg" alt="Королевство Мустанг" class="element__mask">
+                    <img src="./images/Mustang.jpg" alt="Поселение Королевства Мустанг в горах на высоте 3850 метров"
+                        class="element__mask">
                     <div class="element__info">
                         <h2 class="element__place-name">Королевство Мустанг</h2>
-                        <button class="element__btn-like" type="button" aria-label="like"></button>
+                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
                     </div>
                 </div>
             </section>
         </main>
         <footer class="footer">
-            <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+            <p class="footer__copyright" lang="en">&copy;&nbsp;2022 Mesto Russia</p>
         </footer>
     </div>
     <div class="popup">
         <button class="popup__btn-close" type="button"></button>
         <form action="#" class="popup__container" method="post" name="profile-popup">
             <h2 class="popup__head">Редактировать профиль</h2>
-            <input type="text" class="popup__input popup__input_name" value="Жак-Ив Кусто" name="name"
-                placeholder="Full name">
-            <input type="text" class="popup__input popup__input_description" value="Исследователь океана" name="job"
-                placeholder="Job">
+            <input type="text" class="popup__input popup__input_line_name" value="Жак-Ив Кусто" name="name"
+                placeholder="Имя">
+            <input type="text" class="popup__input popup__input_line_description" value="Исследователь океана" name="job"
+                placeholder="Работа">
             <button type="submit" class="popup__btn-save">Сохранить</button>
         </form>
     </div>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
 </body>
 
 </html>
