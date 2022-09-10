@@ -12,11 +12,13 @@ function formSubmitHandler(event) {
     event.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    form.addEventListener('submit', closePopup);
+    closePopup();
 };
 
-function openPopup() {
-    popup.classList.add('popup_opened');
+function openPopup () {
+popup.classList.add('popup_opened'); 
+nameInput.textContent = profileName.value; 
+jobInput.textContent = profileJob.value;
 };
 
 function closePopup() {
