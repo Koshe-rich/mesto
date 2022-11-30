@@ -24,54 +24,16 @@
                 <button class="profile__add-button" type="button" aria-label="Добавить"></button>
             </section>
             <section class="elements">
-                <template id="element-place">
-                    <div class="element">
-                        <img src="./images/la-dune-du-pyla-with-blue-sky-aquitaine-france_109442-620.jpg"
-                            alt="Море во Франции с большой песчаной дюной" class="element__mask">
-                        <div class="element__info">
-                            <h2 class="element__place-name"></h2>
-                            <button class="element__btn-like" type="button" aria-label="Нравится"></button>
+                <template id="template-item">
+                    <li class="place-item">
+                        <!-- менять по блоку element -->
+                        <img src="" alt="" class="place-item__mask">
+                        <div class="place-item__info">
+                            <h2 class="place-item__place-name"></h2>
+                            <button class="place-item__btn-like" type="button" aria-label="Нравится"></button>
                         </div>
-                    </div>
+                    </li>
                 </template>
-                <!-- <div class="element">
-                    <img src="./images/belobejskaya_pusha.jpg" alt="Беловежская пуща" class="element__mask">
-                    <div class="element__info">
-                        <h2 class="element__place-name">Беловежская пуща</h2>
-                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/campeche-690x355-1.jpg" alt="Улица с разноцветными домами, Мексика, г. Кампече"
-                        class="element__mask">
-                    <div class="element__info">
-                        <h2 class="element__place-name">Сан-Франциско-де-Кампе&#769;че</h2>
-                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/lake.jpg" alt="Горы, Озеро Брайес с изумрудной водой" class="element__mask">
-                    <div class="element__info">
-                        <h2 class="element__place-name">Озеро Брайес</h2>
-                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/00_samarkand.jpg" alt="Площадь Регистан в центре Самарканда"
-                        class="element__mask">
-                    <div class="element__info">
-                        <h2 class="element__place-name">Самарканд</h2>
-                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
-                    </div>
-                </div>
-                <div class="element">
-                    <img src="./images/Mustang.jpg" alt="Поселение Королевства Мустанг в горах на высоте 3850 метров"
-                        class="element__mask">
-                    <div class="element__info">
-                        <h2 class="element__place-name">Королевство Мустанг</h2>
-                        <button class="element__btn-like" type="button" aria-label="Нравится"></button>
-                    </div>
-                </div> -->
             </section>
         </main>
         <footer class="footer">
@@ -89,17 +51,6 @@
             <button type="submit" class="popup__btn-save">Сохранить</button>
         </form>
     </div>
-    <!-- <div class="popup">
-        <button class="popup__btn-close" type="button"></button>
-        <form action="#" class="popup__container" method="post" name="profile-popup">
-            <h2 class="popup__head">Новое место</h2>
-            <input type="text" class="popup__input popup__input_line_name" value="Жак-Ив Кусто" name="name"
-                placeholder="Название">
-            <input type="text" class="popup__input popup__input_line_description" value="Исследователь океана" name="job"
-                placeholder="Ссылка на картинку">
-            <button type="submit" class="popup__btn-save">Создать</button>
-        </form>
-    </div> -->
     <script src="./scripts/index.js" defer></script>
 </body>
 

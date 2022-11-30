@@ -13,11 +13,11 @@
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__avatar-photo/profile__avatar-photo.css);
 @import url(../blocks/elements/elements.css);
-@import url(../blocks/element/element.css);
-@import url(../blocks/element/__btn-like/element__btn-like.css);
-@import url(../blocks/element/__mask/element__mask.css);
-@import url(../blocks/element/__place-name/element__place-name.css);
-@import url(../blocks/element/__info/element__info.css);
+@import url(../blocks/place-item/place-item.css);
+@import url(../blocks/place-item/__btn-like/place-item__btn-like.css);
+@import url(../blocks/place-item/__mask/place-item__mask.css);
+@import url(../blocks/place-item/__place-name/place-item__place-name.css);
+@import url(../blocks/place-item/__info/place-item__info.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);

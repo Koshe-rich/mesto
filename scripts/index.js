@@ -8,43 +8,55 @@ let jobInput = document.querySelector('.popup__input_line_description');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__description');
 
-const element = document.querySelector('.element');
-const elementPlace = document.querySelector('#element-place');
-const img = elementPlace.content.querySelector('.img');
-const elementPlaceName = elementPlace.content.querySelector('.element__place-name');
-const elementBtnLike  = elementPlace.content.querySelector('.element__btn-like');
-
-console.log(img )
-
-
 const initialCards = [
     {
-        name: 'Дюна Пилат',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
-        name: 'Беловежская пуща',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
-        name: 'Сан-Франциско-де-Кампече',
-        link: 'https://images.unsplash.com/photo-1623843740978-8a18154b8e5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80'
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
-        name: 'Озеро Брайес',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
-        name: 'Самарканд',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
-        name: 'Королевство Мустанг',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-];
+  ];
 
+  const listItem = document.querySelector('.elements');
+  const templateItem = document.querySelector('#template-item').content.querySelector('.place-item');
 
+  function createElement(item) {
+
+    const placeItem = templateItem.cloneNode(true);
+
+    const itemName = templateItem.querySelector('.place-item__place-name');
+    const itemImage = templateItem.querySelector('.place-item__mask');
+    
+    itemName.textContent = item.name;
+    itemImage.src = item.link;
+    itemImage.alt = item.name;
+
+    return placeItem;
+
+  };
+  
+  initialCards.forEach(function (item){
+    const newItem =  createElement(item);
+    listItem.prepend(newItem);
+  });
 
 function formSubmitHandler(event) {
     event.preventDefault();
@@ -53,10 +65,10 @@ function formSubmitHandler(event) {
     closePopup();
 };
 
-function openPopup() {
-    popup.classList.add('popup_opened');
-    nameInput.textContent = profileName.value;
-    jobInput.textContent = profileJob.value;
+function openPopup () {
+popup.classList.add('popup_opened'); 
+nameInput.textContent = profileName.value; 
+jobInput.textContent = profileJob.value;
 };
 
 function closePopup() {

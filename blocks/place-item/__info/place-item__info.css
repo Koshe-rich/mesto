@@ -1,0 +1,4 @@
+.place-item__info {
+    display: flex;
+    flex-direction: row;
+}
