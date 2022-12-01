@@ -1,6 +1,6 @@
 let body = document.querySelector('.page');
 let popup = body.querySelector('.popup');
-let popupBtnClose = popup.querySelector('.popup__btn-close');
+let popupBtnClose = body.querySelector('.popup__btn-close');
 let popupBtnOpen = body.querySelector('.profile__edit-button');
 let form = document.querySelector('.popup__container');
 let nameInput = document.querySelector('.popup__input_line_name');
@@ -8,72 +8,147 @@ let jobInput = document.querySelector('.popup__input_line_description');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__description');
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+const listItem = document.querySelector('.elements');
+const templateItem = document.querySelector('#template-item').content.querySelector('.place-item');
+const popupAdd = body.querySelector('.popup-add');
+const popupAddBtnClose = body.querySelector('.popup-add__btn-close');
+const popupAddBtnOpen = body.querySelector('.profile__add-button');
+const addForm = document.querySelector('.popup-add__container');
+const addNameInput = document.querySelector('.popup-add__input_line_name');
+const addlinkInput = document.querySelector('.popup-add__input_line_link');
 
-  const listItem = document.querySelector('.elements');
-  const templateItem = document.querySelector('#template-item').content.querySelector('.place-item');
 
-  function createElement(item) {
+const initialCards = [{
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
-    const placeItem = templateItem.cloneNode(true);
+// Создание элемента
 
-    const itemName = templateItem.querySelector('.place-item__place-name');
-    const itemImage = templateItem.querySelector('.place-item__mask');
-    
-    itemName.textContent = item.name;
-    itemImage.src = item.link;
-    itemImage.alt = item.name;
+function createElement(item) {
+  const placeItem = templateItem.cloneNode(true);
+  const itemName = templateItem.querySelector('.place-item__place-name');
+  const itemImage = templateItem.querySelector('.place-item__mask');
+  itemName.textContent = item.name;
+  itemImage.src = item.link;
+  itemImage.alt = item.name;
+  return placeItem;
 
-    return placeItem;
-
-  };
-  
-  initialCards.forEach(function (item){
-    const newItem =  createElement(item);
-    listItem.prepend(newItem);
-  });
-
-function formSubmitHandler(event) {
-    event.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-    closePopup();
 };
 
-function openPopup () {
-popup.classList.add('popup_opened'); 
-nameInput.textContent = profileName.value; 
-jobInput.textContent = profileJob.value;
+const newElement = (item, wrapEl) => {
+  const newItem = createElement(item);
+  wrapEl.prepend(newItem);
+};
+
+// Проход по массиву + добавление элемента в конец
+
+initialCards.forEach(function (item) {
+  newElement(item, listItem);
+});
+
+// Удаление value
+
+function deleteValue() {
+  addNameInput.value = "";
+  addlinkInput.value = "";
+};
+
+// // Блокировка отправки пустых инпутов
+
+// const popupAddBtn = document.querySelector('#addPlace');
+
+// popupAddBtn.setAttribute('disabled', true);
+
+
+
+// function checkInputValue() {
+
+//   addNameInput.oninput = () => {
+//     if (addNameInput.value.lenght === "") {
+//       popupAddBtn.setAttribute('disabled', true);
+//     } else {
+//       popupAddBtn.removeAttribute('disabled');
+//     };
+//   };
+//   addlinkInput.oninput = () => {
+//     if (addlinkInput.value.lenght === "") {
+//       popupAddBtn.setAttribute('disabled', true);
+//     } else {
+//       popupAddBtn.removeAttribute('disabled');
+//     };
+//   };
+// };
+
+// Попап изменения профиля
+
+function formSubmitHandler(event) {
+  event.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closePopup();
+};
+
+function openPopup() {
+  popup.classList.add('popup_opened');
+  nameInput.textContent = profileName.value;
+  jobInput.textContent = profileJob.value;
 };
 
 function closePopup() {
-    popup.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
 };
+
+
+// Попап добавления локации
+
+function formAddSubmitHandler(evt) {
+  evt.preventDefault();
+
+  const addObj = {
+    name: addNameInput.value,
+    link: addlinkInput.value
+  };
+
+  checkInputValue ();
+  newElement(addObj, listItem);
+  closeAddPopup();
+  deleteValue();
+};
+
+function openAddPopup() {
+  popupAdd.classList.add('popup_opened');
+};
+
+function closeAddPopup() {
+
+  popupAdd.classList.remove('popup_opened');
+
+  deleteValue();
+};
+
+// Листенеры
 
 popupBtnOpen.addEventListener('click', openPopup);
 
@@ -81,3 +156,8 @@ popupBtnClose.addEventListener('click', closePopup);
 
 form.addEventListener('submit', formSubmitHandler);
 
+addForm.addEventListener('submit', formAddSubmitHandler);
+
+popupAddBtnOpen.addEventListener('click', openAddPopup);
+
+popupAddBtnClose.addEventListener('click', closeAddPopup);

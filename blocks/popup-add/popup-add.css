@@ -1,0 +1,13 @@
+.popup-add {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  background-color: rgb(0, 0, 0, 0.5);
+  height: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  display: none;
+}
