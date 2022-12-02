@@ -2,7 +2,6 @@
     background-image: url(../../../images/like.svg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 22px 19px;
     width: 22px;
     border: none;
     background-color: transparent;
@@ -17,8 +16,4 @@
 .place-item__btn-like:hover {
     cursor: pointer;
     opacity: 0.6;
-}
-
-.place-item__btn-like:focus {
-    background-image: url(../../../images/Union.png);
 }

@@ -37,3 +37,5 @@
 @import url(../blocks/popup-add/__head/popup-add__head.css);
 @import url(../blocks/popup-add/__btn-save/popup-add__btn-save.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/place-item/__btn-del/place-item__btn-del.css);
+@import url(../blocks/place-item/__btn-like/_active/place-item__btn-like_active.css);

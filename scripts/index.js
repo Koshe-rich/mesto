@@ -48,14 +48,30 @@ const initialCards = [{
 
 function createElement(item) {
   const placeItem = templateItem.cloneNode(true);
-  const itemName = templateItem.querySelector('.place-item__place-name');
-  const itemImage = templateItem.querySelector('.place-item__mask');
+  const itemName = placeItem.querySelector('.place-item__place-name');
+  const itemImage = placeItem.querySelector('.place-item__mask');
   itemName.textContent = item.name;
   itemImage.src = item.link;
   itemImage.alt = item.name;
+
+  const likeBtn = placeItem.querySelector('.place-item__btn-like');
+  const deleteBtn = placeItem.querySelector('.place-item__btn-del');
+
+  likeBtn.addEventListener('click', likeHandler);
+  deleteBtn.addEventListener('click', deleteHandler);
+
   return placeItem;
 
 };
+
+const likeHandler = (evt) => {
+  console.log(evt.target);
+  evt.target.classList.toggle('place-item__btn-like_active');
+};
+
+const deleteHandler = (evt) => {
+  evt.target.closest('.place-item').remove();
+}
 
 const newElement = (item, wrapEl) => {
   const newItem = createElement(item);
@@ -74,32 +90,6 @@ function deleteValue() {
   addNameInput.value = "";
   addlinkInput.value = "";
 };
-
-// // Блокировка отправки пустых инпутов
-
-// const popupAddBtn = document.querySelector('#addPlace');
-
-// popupAddBtn.setAttribute('disabled', true);
-
-
-
-// function checkInputValue() {
-
-//   addNameInput.oninput = () => {
-//     if (addNameInput.value.lenght === "") {
-//       popupAddBtn.setAttribute('disabled', true);
-//     } else {
-//       popupAddBtn.removeAttribute('disabled');
-//     };
-//   };
-//   addlinkInput.oninput = () => {
-//     if (addlinkInput.value.lenght === "") {
-//       popupAddBtn.setAttribute('disabled', true);
-//     } else {
-//       popupAddBtn.removeAttribute('disabled');
-//     };
-//   };
-// };
 
 // Попап изменения профиля
 
@@ -120,8 +110,7 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 };
 
-
-// Попап добавления локации
+// добавления локации
 
 function formAddSubmitHandler(evt) {
   evt.preventDefault();
@@ -131,11 +120,13 @@ function formAddSubmitHandler(evt) {
     link: addlinkInput.value
   };
 
-  checkInputValue ();
+
   newElement(addObj, listItem);
   closeAddPopup();
   deleteValue();
 };
+
+// Попап добавления локации
 
 function openAddPopup() {
   popupAdd.classList.add('popup_opened');
