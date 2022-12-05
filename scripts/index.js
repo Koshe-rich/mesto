@@ -17,6 +17,10 @@ const addForm = document.querySelector('.popup-add__container');
 const addNameInput = document.querySelector('.popup-add__input_line_name');
 const addlinkInput = document.querySelector('.popup-add__input_line_link');
 
+const previewImg = document.querySelector('.popup-img__image');
+const titleImg = document.querySelector('.popup-img__title');
+const popupPreview = document.querySelector('.popup-img');
+  const popupImgBtnClose = document.querySelector('.popup-img__btn-close');
 
 const initialCards = [{
     name: 'Архыз',
@@ -60,18 +64,36 @@ function createElement(item) {
   likeBtn.addEventListener('click', likeHandler);
   deleteBtn.addEventListener('click', deleteHandler);
 
+  const openImage = placeItem.querySelector('.place-item__mask');
+
+  const popupImage = function () {
+    previewImg.src = item.link;
+    previewImg.alt = item.name;
+    titleImg.textContent = item.name;
+    tooglePopUp(popupPreview);
+  };
+
+  openImage.addEventListener('click', popupImage);
+
+
   return placeItem;
 
 };
 
+// Лайк
+
 const likeHandler = (evt) => {
-  console.log(evt.target);
   evt.target.classList.toggle('place-item__btn-like_active');
 };
+
+
+// Удаление
 
 const deleteHandler = (evt) => {
   evt.target.closest('.place-item').remove();
 }
+
+// Создание элемента
 
 const newElement = (item, wrapEl) => {
   const newItem = createElement(item);
@@ -91,26 +113,22 @@ function deleteValue() {
   addlinkInput.value = "";
 };
 
+// Toogle popup
+
+function tooglePopUp(el) {
+  el.classList.toggle('popup_opened');
+}
+
 // Попап изменения профиля
 
 function formSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup();
+  tooglePopUp(popup);
 };
 
-function openPopup() {
-  popup.classList.add('popup_opened');
-  nameInput.textContent = profileName.value;
-  jobInput.textContent = profileJob.value;
-};
-
-function closePopup() {
-  popup.classList.remove('popup_opened');
-};
-
-// добавления локации
+// добавление локации
 
 function formAddSubmitHandler(evt) {
   evt.preventDefault();
@@ -122,33 +140,33 @@ function formAddSubmitHandler(evt) {
 
 
   newElement(addObj, listItem);
-  closeAddPopup();
+  tooglePopUp(popupAdd);
   deleteValue();
 };
 
-// Попап добавления локации
-
-function openAddPopup() {
-  popupAdd.classList.add('popup_opened');
-};
-
-function closeAddPopup() {
-
-  popupAdd.classList.remove('popup_opened');
-
-  deleteValue();
-};
+// Попап просмотра изображений
 
 // Листенеры
 
-popupBtnOpen.addEventListener('click', openPopup);
+popupBtnOpen.addEventListener('click', () => {
+  tooglePopUp(popup);
+});
+popupBtnClose.addEventListener('click', () => {
+  tooglePopUp(popup);
+});
 
-popupBtnClose.addEventListener('click', closePopup);
+popupAddBtnClose.addEventListener('click', () => {
+  tooglePopUp(popupAdd);
+});
+
+popupAddBtnOpen.addEventListener('click', () => {
+  tooglePopUp(popupAdd);
+});
+
+popupImgBtnClose.addEventListener('click', () => {
+  tooglePopUp(popupPreview);
+});
 
 form.addEventListener('submit', formSubmitHandler);
 
 addForm.addEventListener('submit', formAddSubmitHandler);
-
-popupAddBtnOpen.addEventListener('click', openAddPopup);
-
-popupAddBtnClose.addEventListener('click', closeAddPopup);
