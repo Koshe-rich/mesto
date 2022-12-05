@@ -1,5 +1,5 @@
 .popup-add__container {
-  max-width: 430px;
+  max-width: 358px;
   width: 100%;
   background-color: #fff;
   min-height: 330px;
@@ -15,7 +15,7 @@
 
 @media (max-width: 768px) {
   .popup-add__container {
-      max-width: calc(260px + (358 - 282) * ((100vw - 320px) / (768 - 320)));
+      max-width: calc(216px + (358 - 282) * ((100vw - 320px) / (768 - 320)));
       padding-left: calc(22px + (36 - 22) * ((100vw - 320px) / (768 - 320)));
       padding-right: calc(22px + (36 - 22) * ((100vw - 320px) / (768 - 320)));
   }
