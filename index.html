@@ -2,82 +2,80 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Место силы</title>
-    <link rel="stylesheet" href="././pages/index.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Место силы</title>
+  <link rel="stylesheet" href="././pages/index.css" />
 </head>
 
 <body class="page">
-    <div class="wrapper">
-        <header class="header">
-            <img src="./images/logo.svg" alt="Логотип проекта 'Место'" class="header__logo">
-        </header>
-        <main class="content">
-            <section class="profile">
-                <img src="./images/image.jpg" alt="Изображен Жак-Ив Кусто" class="profile__avatar-photo">
-                <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button" type="button" aria-label="Изменить"></button>
-                    <p class="profile__description">Исследователь океана</p>
-                </div>
-                <button class="profile__add-button" type="button" aria-label="Добавить"></button>
-            </section>
-            <section class="elements">
-            </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__copyright" lang="en">&copy;&nbsp;2022 Mesto Russia</p>
-        </footer>
-    </div>
-    <!-- popUp редактирование профиля -->
-    <div class="popup">
-        <button class="popup__btn-close" type="button"></button>
-        <form action="#" class="popup__container" method="post" name="profile-popup">
-            <h2 class="popup__head">Редактировать профиль</h2>
-            <input type="text" class="popup__input popup__input_line_name" value="Жак-Ив Кусто" name="name"
-                placeholder="Имя">
-            <input type="text" class="popup__input popup__input_line_description" value="Исследователь океана"
-                name="job" placeholder="Работа">
-            <button type="submit" class="popup__btn-save">Сохранить</button>
-        </form>
-    </div>
-    <!-- popUp добавление карточки -->
-    <div class="popup-add">
-        <button class="popup-add__btn-close" type="button"></button>
-        <form action="#" class="popup-add__container" method="post" name="profile-popup">
-            <h2 class="popup__head">Новое место</h2>
-            <input type="text" class="popup-add__input popup-add__input_line_name" name="name" placeholder="Название"
-                required>
-            <input type="text" class="popup-add__input popup-add__input_line_link" name="link"
-                placeholder="Ссылка на картинку" required>
-            <button type="submit" class="popup-add__btn-save" id="addPlace">Создать</button>
-        </form>
-    </div>
-
-    <!-- popUp с картинкой -->
-    <div class="popup-img">
-        <div class="popup-img__container">
-            <div class="popup-img__btn-container">            <button class="popup-img__btn-close" type="button"></button></div>
-            <img src="" alt="" class="popup-img__image">
-            <p class="popup-img__title"></p>
+  <div class="wrapper">
+    <header class="header">
+      <img src="./images/logo.svg" alt="Логотип проекта 'Место'" class="header__logo">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/image.jpg" alt="Изображен Жак-Ив Кусто" class="profile__avatar-photo">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button" type="button" aria-label="Изменить"></button>
+          <p class="profile__description">Исследователь океана</p>
         </div>
+        <button class="profile__add-button" type="button" aria-label="Добавить"></button>
+      </section>
+      <section class="elements">
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright" lang="en">&copy;&nbsp;2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <!-- popUp редактирование профиля -->
+  <div class="popup">
+    <button class="popup__btn-close" type="button"></button>
+    <form action="#" class="popup__container" method="post" name="profile-popup">
+      <h2 class="popup__head">Редактировать профиль</h2>
+      <input type="text" class="popup__input popup__input_line_name" value="Жак-Ив Кусто" name="name" placeholder="Имя">
+      <input type="text" class="popup__input popup__input_line_description" value="Исследователь океана" name="job" placeholder="Работа">
+      <button type="submit" class="popup__btn-save">Сохранить</button>
+    </form>
+  </div>
+  <!-- popUp добавление карточки -->
+  <div class="popup-add">
+    <button class="popup-add__btn-close" type="button"></button>
+    <form action="#" class="popup-add__container" method="post" name="profile-popup">
+      <h2 class="popup__head">Новое место</h2>
+      <input type="text" class="popup-add__input popup-add__input_line_name" name="name" placeholder="Название" required>
+      <input type="text" class="popup-add__input popup-add__input_line_link" name="link" placeholder="Ссылка на картинку" required>
+      <button type="submit" class="popup-add__btn-save" id="addPlace">Создать</button>
+    </form>
+  </div>
+
+  <!-- popUp с картинкой -->
+  <div class="popup-img">
+    <div class="popup-img__container">
+      <div class="popup-img__btn-container">
+        <button class="popup-img__btn-close" type="button"></button>
+      </div>
+      <img src="" alt="" class="popup-img__image">
+      <p class="popup-img__title"></p>
     </div>
+  </div>
 
-    <!-- template -->
+  <!-- template -->
 
-    <template id="template-item">
-        <li class="place-item">
-            <button type="button" class="place-item__btn-del" aria-label="Удалить"></button>
-            <img src="" alt="" class="place-item__mask">
-            <div class="place-item__info">
-                <h2 class="place-item__place-name"></h2>
-                <button class="place-item__btn-like" type="button" aria-label="Нравится" id="like"></button>
-            </div>
-        </li>
-    </template>
+  <template id="template-item">
+    <li class="place-item">
+      <button type="button" class="place-item__btn-del" aria-label="Удалить"></button>
+      <img src="" alt="" class="place-item__mask">
+      <div class="place-item__info">
+        <h2 class="place-item__place-name"></h2>
+        <button class="place-item__btn-like" type="button" aria-label="Нравится" id="like"></button>
+      </div>
+    </li>
+  </template>
 
-    <script src="./scripts/index.js" defer></script>
+  <script src="./scripts/index.js" defer></script>
 </body>
 
 </html>
