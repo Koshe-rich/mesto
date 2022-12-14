@@ -1,5 +1,5 @@
 const body = document.querySelector('.page');
-const popupProfile = body.querySelector('.popup');
+const popupProfile = body.querySelector('.popup-edit-profile');
 const popupProfileBtnClose = popupProfile.querySelector('.popup__btn-close');
 const popupProfileBtnOpen = body.querySelector('.profile__edit-button');
 const popupProfileForm = popupProfile.querySelector('.popup__container');
@@ -8,7 +8,7 @@ const jobInput = popupProfile.querySelector('.popup__input_line_description');
 const profileName = popupProfile.querySelector('.profile__name');
 const profileJob = popupProfile.querySelector('.profile__description');
 
-const popupAdd = body.querySelector('.popup-add');
+const popupAdd = body.querySelector('.popup-add-card');
 const popupAddBtnClose = popupAdd.querySelector('.popup-add__btn-close');
 const popupAddBtnOpen = body.querySelector('.profile__add-button');
 const listItem = document.querySelector('.elements');
@@ -17,7 +17,7 @@ const addForm = popupAdd.querySelector('.popup-add__container');
 const addNameInput = popupAdd.querySelector('.popup-add__input_line_name');
 const addlinkInput = popupAdd.querySelector('.popup-add__input_line_link');
 
-const popupPreview = document.querySelector('.popup-img');
+const popupPreview = body.querySelector('.popup-img');
 const previewImg = popupPreview.querySelector('.popup-img__image');
 const titleImg = popupPreview.querySelector('.popup-img__title');
 const popupImgBtnClose = popupPreview.querySelector('.popup-img__btn-close');
