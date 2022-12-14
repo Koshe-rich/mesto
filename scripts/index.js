@@ -14,8 +14,8 @@ const popupAddBtnOpen = body.querySelector('.profile__add-button');
 const listItem = document.querySelector('.elements');
 const templateItem = document.querySelector('#template-item').content.querySelector('.place-item');
 const addForm = popupAdd.querySelector('.popup__form');
-const addNameInput = popupAdd.querySelector('.popup-add__input_line_name');
-const addlinkInput = popupAdd.querySelector('.popup-add__input_line_link');
+const addNameInput = popupAdd.querySelector('.popup__input_line_name');
+const addlinkInput = popupAdd.querySelector('.popup__input_line_description');
 
 const popupPreview = body.querySelector('.popup-img');
 const previewImg = popupPreview.querySelector('.popup-img__image');
