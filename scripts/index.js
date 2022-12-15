@@ -5,8 +5,8 @@ const popupProfileBtnOpen = body.querySelector('.profile__edit-button');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const nameInput = popupProfile.querySelector('.popup__input_line_name');
 const jobInput = popupProfile.querySelector('.popup__input_line_description');
-const profileName = popupProfile.querySelector('.profile__name');
-const profileJob = popupProfile.querySelector('.profile__description');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__description');
 
 const popupAdd = body.querySelector('.popup-add-card');
 const popupAddBtnClose = popupAdd.querySelector('.popup__btn-close');
@@ -21,6 +21,13 @@ const popupPreview = body.querySelector('.popup-img');
 const previewImg = popupPreview.querySelector('.popup-img__image');
 const titleImg = popupPreview.querySelector('.popup-img__title');
 const popupImgBtnClose = popupPreview.querySelector('.popup-img__btn-close');
+
+import {
+    cfg
+} from './validation.js';
+import {
+    blockSubmitBtn
+} from './validation.js';
 
 // Создание элемента
 
@@ -78,15 +85,35 @@ initialCards.forEach(function (item) {
 
 // Открытие попапа
 
-function openPopUp (el) {
+function openPopUp(el) {
     el.classList.add('popup_opened');
+    document.addEventListener('keydown', handlekeyDown);
 }
 
 // Закрытие попапа
 
-function closePopUp (el) {
+function closePopUp(el) {
     el.classList.remove('popup_opened');
+    document.removeEventListener('keydown', handlekeyDown);
 }
+
+// Закрытие попапа на клик ESC
+
+const handlekeyDown = (e) => {
+    if (e.key === 'Escape') {
+        const openModal = document.querySelector('.popup_opened');
+        closePopUp(openModal);
+    };
+};
+
+// Закрытие попапа на клик по оверлейю 
+
+const handleOverlay = (e) => {
+    if (e.target == e.currentTarget) {
+        closePopUp(e.currentTarget);
+    };
+};
+
 
 // Попап изменения профиля
 
@@ -107,11 +134,14 @@ function formAddSubmitHandler(evt) {
         link: addlinkInput.value
     };
 
+    // const btnSave = document.querySelector('.popup__btn-add')
+    // btnSave.classList.add(cfg.inactiveButtonClass)
+    // btnSave.ariaDisabled = 'disabled';
     addNewElement(addObj, listItem);
     closePopUp(popupAdd);
+    blockSubmitBtn(cfg);
     addForm.reset();
 };
-
 
 // Листенеры
 
@@ -135,5 +165,10 @@ popupImgBtnClose.addEventListener('click', () => {
 });
 
 popupProfileForm.addEventListener('submit', formProfileSubmitHandler);
-
 addForm.addEventListener('submit', formAddSubmitHandler);
+
+// Слушаем клики по оверлею для профиль/добавление/просмотр
+
+popupProfile.addEventListener('click', handleOverlay);
+popupAdd.addEventListener('click', handleOverlay);
+popupPreview.addEventListener('click', handleOverlay);

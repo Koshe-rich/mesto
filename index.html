@@ -2,10 +2,10 @@
 <html lang="ru">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место силы</title>
-  <link rel="stylesheet" href="././pages/index.css" />
+  <link rel="stylesheet" href="././pages/index.css">
 </head>
 
 <body class="page">
@@ -35,9 +35,13 @@
     <button class="popup__btn-close" type="button"></button>
     <form action="#" class="popup__form" method="post" name="profile-popup">
       <h2 class="popup__head">Редактировать профиль</h2>
-      <input type="text" class="popup__input popup__input_line_name" value="Жак-Ив Кусто" name="name" placeholder="Имя" required>
-      <input type="text" class="popup__input popup__input_line_description" value="Исследователь океана" name="job" placeholder="Работа" required>
-      <button type="submit" class="popup__btn-save">Сохранить</button>
+      <input type="text" class="popup__input popup__input_line_name" id="input-name" value="Жак-Ив Кусто" name="name"
+        placeholder="Имя" minlength="2" maxlength="40" required>
+      <span class="popup__error popup__error_visible" id="input-name-error"></span>
+      <input type="text" class="popup__input popup__input_line_description" id="input-job" value="Исследователь океана"
+        name="job" placeholder="Работа" minlength="2" maxlength="200" required>
+      <span class="popup__error popup__error_visible" id="input-job-error"></span>
+      <button type="submit" class="popup__btn-save" id="btn-save">Сохранить</button>
     </form>
   </div>
 
@@ -46,9 +50,13 @@
     <button class="popup__btn-close" type="button"></button>
     <form action="#" class="popup__form" method="post" name="profile-popup">
       <h2 class="popup__head">Новое место</h2>
-      <input type="text" class="popup__input popup__input_line_name" id="name" name="name" placeholder="Название" required>
-      <input type="url" class="popup__input popup__input_line_description" id="link" name="link" placeholder="Ссылка на картинку" required>
-      <button type="submit" class="popup__btn-save" id="addPlace">Создать</button>
+      <input type="text" class="popup__input popup__input_line_name" id="input-title" name="name" placeholder="Название"
+        minlength="2" maxlength="30" required>
+      <span class="popup__error" id="input-title-error"></span>
+      <input type="url" class="popup__input popup__input_line_description" id="input-link" name="link"
+        placeholder="Ссылка на картинку" required>
+      <span class="popup__error" id="input-link-error"></span>
+      <button type="submit" class="popup__btn-save popup__btn-add popup__btn-save_disabled" id="btn-create">Создать</button>
     </form>
   </div>
 
@@ -75,9 +83,9 @@
       </div>
     </li>
   </template>
-
+  <!-- <script src="./scripts/validation.js"></script> -->
   <script src="./scripts/dataCards.js" defer></script>
-  <script src="./scripts/index.js" defer></script>
+  <script type="module" src="./scripts/index.js" defer></script>
 </body>
 
 </html>
