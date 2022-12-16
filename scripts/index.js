@@ -7,6 +7,7 @@ import {
 
 const body = document.querySelector('.page');
 const popupProfile = body.querySelector('.popup-edit-profile');
+const popups = document.querySelectorAll('.popup');
 const popupProfileBtnClose = popupProfile.querySelector('.popup__btn-close');
 const popupProfileBtnOpen = body.querySelector('.profile__edit-button');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
@@ -57,6 +58,27 @@ function createElement(item) {
     return placeItem;
 };
 
+// Закрыть попап оверлей и крестик
+
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopUp(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closePopUp(popup)
+        }
+    })
+})
+// Закрытие попапа на клик ESC
+
+const handlekeyDown = (e) => {
+    if (e.key === 'Escape') {
+        const openModal = document.querySelector('.popup_opened');
+        closePopUp(openModal);
+    };
+};
+
 // Лайк
 
 const likeItemHandler = (evt) => {
@@ -96,25 +118,6 @@ function closePopUp(el) {
     document.removeEventListener('keydown', handlekeyDown);
 };
 
-// Закрытие попапа на клик ESC
-
-const handlekeyDown = (e) => {
-    if (e.key === 'Escape') {
-        const openModal = document.querySelector('.popup_opened');
-        closePopUp(openModal);
-    };
-};
-
-// Закрытие попапа на клик по оверлейю 
-
-const handleOverlay = (e) => {
-    if (e.target == e.currentTarget) {
-        closePopUp(e.currentTarget);
-    };
-};
-
-
-
 // Добавление локации
 
 function addFormSubmitHandler(evt) {
@@ -146,27 +149,11 @@ popupProfileBtnOpen.addEventListener('click', () => {
     jobInput.value = profileJob.textContent;
     openPopUp(popupProfile);
 });
-popupProfileBtnClose.addEventListener('click', () => {
-    closePopUp(popupProfile);
-});
-
-popupAddBtnClose.addEventListener('click', () => {
-    closePopUp(popupAdd);
-});
 
 popupAddBtnOpen.addEventListener('click', () => {
     openPopUp(popupAdd);
 });
 
-popupImgBtnClose.addEventListener('click', () => {
-    closePopUp(popupPreview);
-});
 
 popupProfileForm.addEventListener('submit', addFormProfileSubmitHandler);
 addForm.addEventListener('submit', addFormSubmitHandler);
-
-// Слушаем клики по оверлею для профиль/добавление/просмотр
-
-popupProfile.addEventListener('click', handleOverlay);
-popupAdd.addEventListener('click', handleOverlay);
-popupPreview.addEventListener('click', handleOverlay);
