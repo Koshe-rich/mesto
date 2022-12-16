@@ -35,6 +35,7 @@ const checkInputValidity = (input, cfg) => {
 
 const toggleButton = (inputs, button, cfg) => {
   const isFormValid = inputs.every(input => input.validity.valid)
+  console.log(isFormValid);
 
   if (isFormValid) {
     button.classList.remove(cfg.inactiveButtonClass);
@@ -64,6 +65,7 @@ const enableValidation = (cfg) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
     });
+
 
     inputs.forEach(input => {
       input.addEventListener('input', () => {

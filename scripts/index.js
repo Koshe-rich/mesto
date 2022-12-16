@@ -1,3 +1,10 @@
+import {
+    cfg
+} from './validation.js';
+import {
+    blockSubmitBtn
+} from './validation.js';
+
 const body = document.querySelector('.page');
 const popupProfile = body.querySelector('.popup-edit-profile');
 const popupProfileBtnClose = popupProfile.querySelector('.popup__btn-close');
@@ -21,13 +28,6 @@ const popupPreview = body.querySelector('.popup-img');
 const previewImg = popupPreview.querySelector('.popup-img__image');
 const titleImg = popupPreview.querySelector('.popup-img__title');
 const popupImgBtnClose = popupPreview.querySelector('.popup-img__btn-close');
-
-import {
-    cfg
-} from './validation.js';
-import {
-    blockSubmitBtn
-} from './validation.js';
 
 // Создание элемента
 
@@ -55,7 +55,6 @@ function createElement(item) {
     itemImage.addEventListener('click', popupImage);
 
     return placeItem;
-
 };
 
 // Лайк
@@ -95,7 +94,7 @@ function openPopUp(el) {
 function closePopUp(el) {
     el.classList.remove('popup_opened');
     document.removeEventListener('keydown', handlekeyDown);
-}
+};
 
 // Закрытие попапа на клик ESC
 
@@ -115,6 +114,22 @@ const handleOverlay = (e) => {
 };
 
 
+
+// Добавление локации
+
+function addFormSubmitHandler(evt) {
+    evt.preventDefault();
+    
+    const addObj = {
+        name: addNameInput.value,
+        link: addlinkInput.value
+    };
+    addNewElement(addObj, listItem);
+    closePopUp(popupAdd);
+    blockSubmitBtn(cfg);
+    addForm.reset();
+};
+
 // Попап изменения профиля
 
 function addFormProfileSubmitHandler(event) {
@@ -124,28 +139,11 @@ function addFormProfileSubmitHandler(event) {
     closePopUp(popupProfile);
 };
 
-// добавление локации
-
-function addFormSubmitHandler(evt) {
-    evt.preventDefault();
-
-    const addObj = {
-        name: addNameInput.value,
-        link: addlinkInput.value
-    };
-
-    // const btnSave = document.querySelector('.popup__btn-add')
-    // btnSave.classList.add(cfg.inactiveButtonClass)
-    // btnSave.ariaDisabled = 'disabled';
-    addNewElement(addObj, listItem);
-    closePopUp(popupAdd);
-    blockSubmitBtn(cfg);
-    addForm.reset();
-};
-
 // Листенеры
 
 popupProfileBtnOpen.addEventListener('click', () => {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
     openPopUp(popupProfile);
 });
 popupProfileBtnClose.addEventListener('click', () => {
