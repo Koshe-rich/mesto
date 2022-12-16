@@ -117,7 +117,7 @@ const handleOverlay = (e) => {
 
 // Попап изменения профиля
 
-function formProfileSubmitHandler(event) {
+function addFormProfileSubmitHandler(event) {
     event.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
@@ -126,7 +126,7 @@ function formProfileSubmitHandler(event) {
 
 // добавление локации
 
-function formAddSubmitHandler(evt) {
+function addFormSubmitHandler(evt) {
     evt.preventDefault();
 
     const addObj = {
@@ -164,8 +164,8 @@ popupImgBtnClose.addEventListener('click', () => {
     closePopUp(popupPreview);
 });
 
-popupProfileForm.addEventListener('submit', formProfileSubmitHandler);
-addForm.addEventListener('submit', formAddSubmitHandler);
+popupProfileForm.addEventListener('submit', addFormProfileSubmitHandler);
+addForm.addEventListener('submit', addFormSubmitHandler);
 
 // Слушаем клики по оверлею для профиль/добавление/просмотр
 
