@@ -8,7 +8,6 @@ import {
 const body = document.querySelector('.page');
 const popupProfile = body.querySelector('.popup-edit-profile');
 const popups = document.querySelectorAll('.popup');
-const popupProfileBtnClose = popupProfile.querySelector('.popup__btn-close');
 const popupProfileBtnOpen = body.querySelector('.profile__edit-button');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const nameInput = popupProfile.querySelector('.popup__input_line_name');
@@ -17,7 +16,6 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
 
 const popupAdd = body.querySelector('.popup-add-card');
-const popupAddBtnClose = popupAdd.querySelector('.popup__btn-close');
 const popupAddBtnOpen = body.querySelector('.profile__add-button');
 const listItem = document.querySelector('.elements');
 const templateItem = document.querySelector('#template-item').content.querySelector('.place-item');
@@ -28,7 +26,6 @@ const addlinkInput = popupAdd.querySelector('.popup__input_line_description');
 const popupPreview = body.querySelector('.popup-img');
 const previewImg = popupPreview.querySelector('.popup-img__image');
 const titleImg = popupPreview.querySelector('.popup-img__title');
-const popupImgBtnClose = popupPreview.querySelector('.popup-img__btn-close');
 
 // Создание элемента
 
@@ -122,7 +119,7 @@ function closePopUp(el) {
 
 function addFormSubmitHandler(evt) {
     evt.preventDefault();
-    
+
     const addObj = {
         name: addNameInput.value,
         link: addlinkInput.value

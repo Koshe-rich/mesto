@@ -9,39 +9,38 @@ export const cfg = {
 
 // Блокировка кнопки сохранить
 
-export const blockSubmitBtn = (cfg) => {
+export const blockSubmitBtn = ({inactiveButtonClass}) => {
   const btnSave = document.querySelector('.popup__btn-add')
-  btnSave.classList.add(cfg.inactiveButtonClass);
+  btnSave.classList.add(inactiveButtonClass);
   btnSave.disabled = 'disabled';
 };
 
 // Отображаем ошибки валидации
 
-const checkInputValidity = (input, cfg) => {
+const checkInputValidity = (input, {errorClass, inputErrorClass}) => {
   const error = document.querySelector(`#${input.id}-error`);
 
   if (input.validity.valid) {
-    error.classList.remove(cfg.errorClass);
-    input.classList.remove(cfg.inputErrorClass);
+    error.classList.remove(errorClass);
+    input.classList.remove(inputErrorClass);
     error.textContent = '';
   } else {
-    error.classList.add(cfg.errorClass);
-    input.classList.add(cfg.inputErrorClass);
+    error.classList.add(errorClass);
+    input.classList.add(inputErrorClass);
     error.textContent = input.validationMessage;
   };
 };
 
 // Меняем стили кнопке добавить/сохранить
 
-const toggleButton = (inputs, button, cfg) => {
+const toggleButton = (inputs, button, {inactiveButtonClass}) => {
   const isFormValid = inputs.every(input => input.validity.valid)
-  console.log(isFormValid);
 
   if (isFormValid) {
-    button.classList.remove(cfg.inactiveButtonClass);
+    button.classList.remove(inactiveButtonClass);
     button.disabled = '';
   } else {
-    button.classList.add(cfg.inactiveButtonClass);
+    button.classList.add(inactiveButtonClass);
     button.disabled = 'disabled';
   };
 };
@@ -57,15 +56,16 @@ const enableValidation = (cfg) => {
   } = cfg;
   const forms = [...document.querySelectorAll(formSelector)];
 
+
+
   forms.forEach(form => {
 
-    const inputs = [...document.querySelectorAll(inputSelector)];
+    const inputs = [...form.querySelectorAll(inputSelector)];
     const button = form.querySelector(submitButtonSelector);
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
     });
-
 
     inputs.forEach(input => {
       input.addEventListener('input', () => {
