@@ -9,8 +9,8 @@ export const cfg = {
 
 // Блокировка кнопки сохранить
 
-export const blockSubmitBtn = ({inactiveButtonClass}) => {
-  const btnSave = document.querySelector('.popup__btn-add')
-  btnSave.classList.add(inactiveButtonClass);
-  btnSave.disabled = 'disabled';
-};
+// export const blockSubmitBtn = ({inactiveButtonClass}) => {
+//   const btnSave = document.querySelector('.popup__btn-add')
+//   btnSave.classList.add(inactiveButtonClass);
+//   btnSave.disabled = 'disabled';
+// };

@@ -1,10 +1,6 @@
 import {
     cfg
 } from './validation.js';
-import {
-    blockSubmitBtn
-} from './validation.js';
-
 import {Card} from './Card.js'
 import { FormValidator } from './FormValidator.js';
 
@@ -28,8 +24,11 @@ const listItem = document.querySelector('.elements');
 const templateSelector = '#template-item';
 
 
-const formValidator = new FormValidator(cfg, addForm);
-formValidator.enableValidation();
+const formAddCardValidator = new FormValidator(cfg, addForm);
+formAddCardValidator.enableValidation();
+
+const formProfileValidator = new FormValidator(cfg, popupProfileForm);
+formProfileValidator.enableValidation();
 
 // Подгружаем карточки из массива объектов с данными
 
@@ -61,12 +60,8 @@ function addFormSubmitHandler(evt) {
 
 function addFormProfileSubmitHandler(event) {
     event.preventDefault();
-    
-      const validator = new FormValidator(cfg, popupProfileForm);
   
-    validator.enableValidation();
-  
-    if (validator._submitButton.classList.contains(cfg.inactiveButtonClass)) {
+    if (formProfileValidator._submitButton.classList.contains(cfg.inactiveButtonClass)) {
       return;
     }
   

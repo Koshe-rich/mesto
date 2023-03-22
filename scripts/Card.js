@@ -16,7 +16,7 @@ export class Card {
   _setEventListeners() { // добавляет обработчики событий на кнопки лайка и удаления, а также на изображение для просмотра.
     this._element.querySelector('.place-item__btn-like').addEventListener('click', this._handleLikeClick);
     this._element.querySelector('.place-item__btn-del').addEventListener('click', this._handleDeleteClick);
-    this._element.querySelector('.place-item__mask').addEventListener('click', this._handleImageClick);
+    this._itemImage.addEventListener('click', this._handleImageClick);
   }
 
   _handleLikeClick(evt) { // переключает класс активности на кнопке лайка.
@@ -41,14 +41,15 @@ export class Card {
 
   createCard() { // создает карточку элемента, заполняет его данными и возвращает элемент.
     this._element = this._getTemplate();
+    this._itemImage = this._element.querySelector('.place-item__mask');
     this._setEventListeners();
 
     const itemName = this._element.querySelector('.place-item__place-name');
-    const itemImage = this._element.querySelector('.place-item__mask');
+
 
     itemName.textContent = this._data.name;
-    itemImage.src = this._data.link;
-    itemImage.alt = this._data.name;
+    this._itemImage.src = this._data.link;
+    this._itemImage.alt = this._data.name;
 
     return this._element;
   }
