@@ -2,8 +2,8 @@ export class FormValidator {
   constructor(cfg, formElement) {
     this._cfg = cfg; // содержит объект настроек, переданный в конструктор класса.
     this._formElement = formElement; // содержит элемент формы, переданный в конструктор класса.
-    this._inputs = Array.from(formElement.querySelectorAll(cfg.inputSelector)); // массив всех инпутов формы.
-    this._submitButton = formElement.querySelector(cfg.submitButtonSelector); // которая будет использоваться для отправки формы.
+    this._inputs = Array.from(formElement.querySelectorAll(this._cfg.inputSelector)); // массив всех инпутов формы.
+    this._submitButton = formElement.querySelector(this._cfg.submitButtonSelector); // которая будет использоваться для отправки формы.
   }
 
   _showInputError(input) { // метод, который вызывается, когда инпут невалидный.
