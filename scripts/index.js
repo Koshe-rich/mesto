@@ -51,8 +51,8 @@ function addFormSubmitHandler(evt) {
     const cardElement = card.createCard();
     listItem.prepend(cardElement);
 
+    formAddCardValidator.disableButton();
     closePopUp(popupAdd);
-    blockSubmitBtn(cfg);
     addForm.reset();
 }
 
@@ -60,11 +60,7 @@ function addFormSubmitHandler(evt) {
 
 function addFormProfileSubmitHandler(event) {
     event.preventDefault();
-  
-    if (formProfileValidator._submitButton.classList.contains(cfg.inactiveButtonClass)) {
-      return;
-    }
-  
+      
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopUp(popupProfile);
