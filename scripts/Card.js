@@ -1,7 +1,5 @@
 import {openPopUp} from './index.js'
 
-// 
-
 export class Card {
   constructor(data, templateSelector) { //Конструктор класса принимает данные элемента и селектор шаблона.
     this._data = data;
