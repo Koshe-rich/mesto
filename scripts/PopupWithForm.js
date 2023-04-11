@@ -1,4 +1,4 @@
-class PopupWithForm extends Popup {
+export class PopupWithForm extends Popup {
   constructor(popupSelector, submitCallback) {
     super(popupSelector);
     this._submitCallback = submitCallback;
