@@ -10,15 +10,14 @@ import { UserInfo } from './UserInfo.js'
 
 const body = document.querySelector('.page');
 const popupProfile = body.querySelector('.popup-edit-profile');
-const popups = document.querySelectorAll('.popup');
 const editProfileButton = body.querySelector('.profile__edit-button');
-const popupProfileForm = popupProfile.querySelector('.popup__form');
+const popupProfileForm = popupProfile.querySelector('.popup__form-edit-profile');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
 
 const popupAdd = body.querySelector('.popup-add-card');
 const popupAddBtnOpen = body.querySelector('.profile__add-button');
-const addForm = popupAdd.querySelector('.popup__form');
+const addForm = popupAdd.querySelector('.popup__add-card');
 
 
 const formAddCardValidator = new FormValidator(cfg, addForm);
@@ -55,8 +54,8 @@ const popupWithImage = new PopupWithImage('.popup-img');
 // Создаем экземпляр UserInfo
 
 const userInfo = new UserInfo({
-  nameSelector: '.popup__input_line_name',
-  infoSelector: '.popup__input_line_description'
+  nameSelector: '.profile__name',
+  infoSelector: '.profile__description'
 });
 
 
@@ -66,7 +65,6 @@ const editProfilePopupWithForm = new PopupWithForm(
   (userData) => {
     const { name, info } = userData;
     userInfo.setUserInfo({ name, info });
-    editProfilePopupWithForm.close();
   },
   '.popup-edit-profile'
   );
@@ -84,14 +82,23 @@ const addCardPopupWithForm = new PopupWithForm(
   '.popup-add-card'
 );
 
+function openProfilePopup() {
+  editProfilePopupWithForm.open();
+  profileName.value = userInfo.getUserInfo().name;
+  profileJob.value = userInfo.getUserInfo().info;
+  formProfileValidator.resetValidationErrors();
+  formProfileValidator.toggleButtonState();
+}
+
+function openAddCardPopup() {
+  addCardPopupWithForm.open();
+  formAddCardValidator.resetValidationErrors();
+  formAddCardValidator.toggleButtonState();
+}
+
 addCardPopupWithForm.setEventListeners();
 editProfilePopupWithForm.setEventListeners();
-popupWithImage.setEventListeners()
+popupWithImage.setEventListeners();
 
-popupAddBtnOpen.addEventListener('click', () => {
-  addCardPopupWithForm.open();
-});
-
-editProfileButton.addEventListener('click', () => {
-  editProfilePopupWithForm.open();
-});
+popupAddBtnOpen.addEventListener('click', openAddCardPopup);
+editProfileButton.addEventListener('click', openProfilePopup);

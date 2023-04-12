@@ -28,7 +28,7 @@ export class FormValidator {
     }
   }
 
-  _toggleButtonState() { // метод, который проверяет, все ли инпуты формы валидны.
+  toggleButtonState() { // метод, который проверяет, все ли инпуты формы валидны.
     if (this._inputs.every((input) => input.validity.valid)) {
       this._submitButton.classList.remove(this._cfg.inactiveButtonClass);
       this._submitButton.disabled = false;
@@ -41,7 +41,7 @@ export class FormValidator {
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
@@ -53,6 +53,13 @@ export class FormValidator {
 
   enableValidation() {
     this._setEventListeners();
-    this._toggleButtonState();
+    this.toggleButtonState();
   }
+
+  resetValidationErrors() {
+    this._inputs.forEach((input)=>
+		{
+			this._hideInputError(input)
+		})
+  };
 }
