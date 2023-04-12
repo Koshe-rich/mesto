@@ -1,53 +1,40 @@
-import {openPopUp} from './index.js'
-
 export class Card {
-  constructor(data, templateSelector) { //Конструктор класса принимает данные элемента и селектор шаблона.
-    this._data = data;
+  constructor({ name, link }, templateSelector, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
-  _getTemplate() { // получает шаблон элемента и возвращает его клон.
+  _getTemplate() {
     const template = document.querySelector(this._templateSelector).content.querySelector('.place-item');
     return template.cloneNode(true);
   }
 
-  _setEventListeners() { // добавляет обработчики событий на кнопки лайка и удаления, а также на изображение для просмотра.
+  _setEventListeners() {
     this._element.querySelector('.place-item__btn-like').addEventListener('click', this._handleLikeClick);
     this._element.querySelector('.place-item__btn-del').addEventListener('click', this._handleDeleteClick);
-    this._itemImage.addEventListener('click', this._handleImageClick);
+    this._itemImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
 
-  _handleLikeClick(evt) { // переключает класс активности на кнопке лайка.
+  _handleLikeClick(evt) {
     evt.target.classList.toggle('place-item__btn-like_active');
   }
 
-  _handleDeleteClick(evt) { // удаляет карточку элемента.
+  _handleDeleteClick(evt) {
     evt.target.closest('.place-item').remove();
   }
 
-  _handleImageClick = () => { // открывает модальное окно для просмотра изображения и устанавливает значения src и alt для просматриваемого изображения, а также значение заголовка.
-    const popupPreview = document.querySelector('.popup-img');
-    const previewImg = popupPreview.querySelector('.popup-img__image');
-    const titleImg = popupPreview.querySelector('.popup-img__title');
-
-    previewImg.src = this._data.link;
-    previewImg.alt = this._data.name;
-    titleImg.textContent = this._data.name;
-
-    openPopUp(popupPreview);
-  }
-
-  createCard() { // создает карточку элемента, заполняет его данными и возвращает элемент.
+  createCard() {
     this._element = this._getTemplate();
     this._itemImage = this._element.querySelector('.place-item__mask');
     this._setEventListeners();
 
     const itemName = this._element.querySelector('.place-item__place-name');
 
-
-    itemName.textContent = this._data.name;
-    this._itemImage.src = this._data.link;
-    this._itemImage.alt = this._data.name;
+    itemName.textContent = this._name;
+    this._itemImage.src = this._link;
+    this._itemImage.alt = this._name;
 
     return this._element;
   }
