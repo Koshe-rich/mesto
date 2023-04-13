@@ -1,12 +1,12 @@
 import {
   cfg
-} from './validation.js';
-import {Card} from './Card.js'
-import { FormValidator } from './FormValidator.js';
-import { Section } from './Section.js';
-import { PopupWithImage } from './PopupWithImage.js';
-import { PopupWithForm } from './PopupWithForm.js';
-import { UserInfo } from './UserInfo.js'
+} from '../scripts/validation.js';
+import {Card} from '../components/Card.js'
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo.js'
 
 const body = document.querySelector('.page');
 const popupProfile = body.querySelector('.popup-edit-profile');
@@ -58,16 +58,12 @@ const userInfo = new UserInfo({
   infoSelector: '.profile__description'
 });
 
-
-// Изменение профиля
-
-const editProfilePopupWithForm = new PopupWithForm(
+const editProfilePopupWithForm = new PopupWithForm (
   (userData) => {
-    const { name, info } = userData;
-    userInfo.setUserInfo({ name, info });
+    userInfo.setUserInfo(userData);
   },
   '.popup-edit-profile'
-  );
+);
 
 // Добавление новых карточек
 
