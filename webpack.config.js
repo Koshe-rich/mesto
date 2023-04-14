@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const babelConfig = require('./babel.config.json');
+const babelConfig = require('./babel.config');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -38,13 +38,6 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.(png|jpe?g|gif)$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'images/[hash][ext][query]',
-          },
-        },
-        {
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           type: 'asset/resource',
           generator: {
@@ -57,9 +50,9 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.(png|jpe?g|gif|svg)$/i,
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[ext]',
+          type: 'asset/resource',
+          generator: {
+            filename: 'images/[hash][ext][query]',
           },
         },
       ],
