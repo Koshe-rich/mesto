@@ -81,7 +81,7 @@ const addCardPopupWithForm = new PopupWithForm(
 function openProfilePopup() {
   editProfilePopupWithForm.open();
   profileName.value = userInfo.getUserInfo().name;
-  profileJob.value = userInfo.getUserInfo().info;
+  profileJob.value = userInfo.getUserInfo().job;
   formProfileValidator.resetValidationErrors();
   formProfileValidator.toggleButtonState();
 }

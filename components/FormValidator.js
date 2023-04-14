@@ -6,19 +6,25 @@ export class FormValidator {
     this._submitButton = formElement.querySelector(this._cfg.submitButtonSelector); // которая будет использоваться для отправки формы.
   }
 
-  _showInputError(input) { // метод, который вызывается, когда инпут невалидный.
-    const errorElement = this._formElement.querySelector(`#${input.id}-error`);
+_showInputError(input) {
+  const errorElement = this._formElement.querySelector(`#${input.id}-error`);
+  if (errorElement) {
     errorElement.textContent = input.validationMessage;
     input.classList.add(this._cfg.inputErrorClass);
     errorElement.classList.add(this._cfg.errorClass);
   }
+}
 
-  _hideInputError(input) { // метод, который вызывается, когда инпут валидный.
+
+  _hideInputError(input) {
     const errorElement = this._formElement.querySelector(`#${input.id}-error`);
-    errorElement.textContent = '';
-    input.classList.remove(this._cfg.inputErrorClass);
-    errorElement.classList.remove(this._cfg.errorClass);
+    if (errorElement) {
+      errorElement.textContent = '';
+      input.classList.remove(this._cfg.inputErrorClass);
+      errorElement.classList.remove(this._cfg.errorClass);
+    }
   }
+  
 
   _checkInputValidity(input) { // метод, который проверяет валидность инпута.
     if (input.validity.valid) {
