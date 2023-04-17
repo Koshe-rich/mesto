@@ -43,11 +43,14 @@ const section = new Section({
   items: initialCards,
   renderer: (item) => {
     const card = new Card(item, '#template-item', handleCardClick);
-    return card.createCard();
+    const cardElement = card.createCard();
+    section.addItem(cardElement);
+    return cardElement;
   }
 }, '.elements');
 
 section.render();
+
 
 // Создаем экземпляр PopupWithImage
 
