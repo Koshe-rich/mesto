@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
-    entry: './src/index.js',
+    entry: './src/pages/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: isProduction ? 'bundle.min.js' : 'bundle.js',
