@@ -35,15 +35,18 @@ const handleCardClick = (name, link) => {
 popupWithImage.open(name, link);
 }
 
-
+const createCard = (item) => {
+  const card = new Card(item, '#template-item', handleCardClick);
+  const cardElement = card.createCard();
+  return cardElement;
+}
 
 // Добавляем карточки 
 
 const section = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#template-item', handleCardClick);
-    const cardElement = card.createCard();
+    const cardElement = createCard(item)
     section.addItem(cardElement);
     return cardElement;
   }
@@ -74,10 +77,8 @@ const editProfilePopupWithForm = new PopupWithForm (
 // Добавление новых карточек
 
 const addCardPopupWithForm = new PopupWithForm(
-  (cardData) => {
-    const { name, link } = cardData;
-    const card = new Card({name, link}, '#template-item', handleCardClick);
-    const cardElement = card.createCard();
+    ({ name, link }) => {
+    const cardElement = card.createCard({name, link});
     section.addItem(cardElement);
     addCardPopupWithForm.close();
     addCardPopupWithForm.reset();
@@ -87,8 +88,9 @@ const addCardPopupWithForm = new PopupWithForm(
 
 function openProfilePopup() {
   editProfilePopupWithForm.open();
-  profileName.value = userInfo.getUserInfo().name;
-  profileJob.value = userInfo.getUserInfo().job;
+  const {name, job} = userInfo.getUserInfo();
+  profileName.value = name;
+  profileJob.value = job;
   formProfileValidator.resetValidationErrors();
   formProfileValidator.toggleButtonState();
 }
