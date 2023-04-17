@@ -4,6 +4,10 @@ export class Card {
     this._link = link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+
+    this._element = null;
+    this._itemImage = null;
+    this._item = null;
   }
 
   _getTemplate() {
@@ -22,13 +26,14 @@ export class Card {
   }
 
   _handleDeleteClick(evt) {
-    evt.target.closest('.place-item').remove();
+    this._item.remove();
   }
 
   createCard() {
     this._element = this._getTemplate();
     this._itemImage = this._element.querySelector('.place-item__mask');
     this._setEventListeners();
+    this._item = this._element.querySelector('.place-item');
 
     const itemName = this._element.querySelector('.place-item__place-name');
 
