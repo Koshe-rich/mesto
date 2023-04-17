@@ -77,6 +77,7 @@ const addCardPopupWithForm = new PopupWithForm(
     const cardElement = card.createCard();
     section.addItem(cardElement);
     addCardPopupWithForm.close();
+    addCardPopupWithForm.reset();
   },
   '.popup-add-card'
 );
