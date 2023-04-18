@@ -26,8 +26,10 @@ export class Card {
   }
 
   _handleDeleteClick(evt) {
-    this._item.remove();
+    const item = evt.target.closest('.place-item');
+    item.remove();
   }
+  
 
   createCard() {
     this._element = this._getTemplate();

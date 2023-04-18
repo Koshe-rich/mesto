@@ -6,6 +6,7 @@ export class PopupWithForm extends Popup {
     this._submitCallback = submitCallback;
     this._form = this._popup.querySelector('.popup__form');
     this._inputs = Array.from(this._form.querySelectorAll('.popup__input'));
+    this._resetFormOnClose = true;
   }
 
   _getInputValues() {
@@ -20,18 +21,22 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      const inputValues = this._getInputValues();
-      this._submitCallback(inputValues);
+      this._submitCallback(this._getInputValues());
       this.close();
     });
   }
 
+
   close() {
     super.close();
+    if (this._resetFormOnClose) {
+      this._form.reset();
+    }
   }
-  
-  reset() {
-    this._form.reset();
+
+  setResetFormOnClose(reset) {
+    this._resetFormOnClose = reset;
   }
+
 }
 

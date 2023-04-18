@@ -15,8 +15,6 @@ const body = document.querySelector('.page');
 const popupProfile = body.querySelector('.popup-edit-profile');
 const editProfileButton = body.querySelector('.profile__edit-button');
 const popupProfileForm = popupProfile.querySelector('.popup__form-edit-profile');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__description');
 
 const popupAdd = body.querySelector('.popup-add-card');
 const popupAddBtnOpen = body.querySelector('.profile__add-button');
@@ -74,26 +72,28 @@ const editProfilePopupWithForm = new PopupWithForm (
   '.popup-edit-profile'
 );
 
+editProfilePopupWithForm.setResetFormOnClose(false)
+
 // Добавление новых карточек
 
 const addCardPopupWithForm = new PopupWithForm(
     ({ name, link }) => {
-    const cardElement = card.createCard({name, link});
+    const cardElement = createCard({name, link});
     section.addItem(cardElement);
     addCardPopupWithForm.close();
-    addCardPopupWithForm.reset();
   },
   '.popup-add-card'
 );
 
 function openProfilePopup() {
-  editProfilePopupWithForm.open();
   const {name, job} = userInfo.getUserInfo();
-  profileName.value = name;
-  profileJob.value = job;
+  popupProfileForm.elements.name.value = name;
+  popupProfileForm.elements.job.value = job;
   formProfileValidator.resetValidationErrors();
   formProfileValidator.toggleButtonState();
+  editProfilePopupWithForm.open();
 }
+
 
 function openAddCardPopup() {
   addCardPopupWithForm.open();
