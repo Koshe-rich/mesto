@@ -6,11 +6,8 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    margin-right: 20px;
     height: 19px;
-    margin-top: 30px;
     padding: 0;
-    margin-left: auto;
 }
 
 .place-item__btn-like:hover {

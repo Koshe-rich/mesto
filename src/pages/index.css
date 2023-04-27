@@ -42,3 +42,11 @@
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__input/_type/_error/popup__input_type_error.css);
 @import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/place-item/__like-wrapper/place-item__like-wrapper.css);
+@import url(../blocks/place-item/__like-count/place-item__like-count.css);
+@import url(../blocks/popup-delete-card/popup-delete-card.css);
+@import url(../blocks/place-item/__btn-del/_display_block/place-item__btn-del_display_block.css);
+@import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
+@import url(../blocks/profile/__pencil/profile__pencil.css);
+@import url(../blocks/popup/__form-change-photo/popup__form-change-photo.css);
+@import url(../blocks/popup-change-photo/popup-change-photo.css);

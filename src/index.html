@@ -15,6 +15,9 @@
     <main class="content">
       <section class="profile">
         <img src="./images/image.svg" alt="Изображен Жак-Ив Кусто" class="profile__avatar-photo">
+        <button class="profile__edit-avatar" type="button">
+          <img class="profile__pencil" src="./images/hover_profile.svg" alt="Карандаш">
+      </button>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__edit-button" type="button" aria-label="Изменить"></button>
@@ -44,6 +47,15 @@
     </form>
   </div>
 
+  <!-- Попап удаления карточки -->
+  <div class="popup popup-delete-card">
+    <button class="popup__btn-close popup__close" type="button"></button>
+    <form action="#" class="popup__form popup__form-delete-card" method="post" name="profile-popup" novalidate>
+      <h2 class="popup__head">Вы уверены?</h2>
+      <button type="submit" class="popup__btn-save popup__btn-add" id="btn-delete">Да</button>
+    </form>
+  </div>
+
   <!-- popUp добавление карточки -->
   <div class="popup popup-add-card">
     <button class="popup__btn-close popup__close" type="button"></button>
@@ -56,6 +68,19 @@
         placeholder="Ссылка на картинку" required>
       <span class="popup__error" id="input-link-error"></span>
       <button type="submit" class="popup__btn-save popup__btn-add popup__btn-save_disabled" id="btn-create">Создать</button>
+    </form>
+  </div>
+
+  <!-- попап изменение аватара профиля -->
+
+  <div class="popup popup-change-photo">
+    <button class="popup__btn-close popup__close" type="button"></button>
+    <form action="#" class="popup__form popup__form-change-photo" method="post" name="card-popup" novalidate>
+      <h2 class="popup__head">Обновить аватар</h2>
+      <input type="url" class="popup__input popup__input_line_description" id="input-link" name="link"
+        placeholder="Ссылка на картинку" required>
+      <span class="popup__error" id="input-url-error"></span>
+      <button type="submit" class="popup__btn-save popup__btn-add" id="btn-change">Сохранить</button>
     </form>
   </div>
 
@@ -78,7 +103,10 @@
       <img src="#" alt="" class="place-item__mask">
       <div class="place-item__info">
         <h2 class="place-item__place-name"></h2>
-        <button class="place-item__btn-like" type="button" aria-label="Нравится" id="like"></button>
+        <div class="place-item__like-wrapper">
+          <button class="place-item__btn-like" type="button" aria-label="Лайк" id="like"></button>
+          <span class="place-item__like-count">0</span>
+        </div>
       </div>
     </li>
   </template>
