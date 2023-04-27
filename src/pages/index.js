@@ -19,6 +19,7 @@ const popupProfileForm = popupProfile.querySelector('.popup__form-edit-profile')
 const popupAdd = body.querySelector('.popup-add-card');
 const popupAddBtnOpen = body.querySelector('.profile__add-button');
 const addForm = popupAdd.querySelector('.popup__add-card');
+const initialCardsUrl = 'https://mesto.nomoreparties.co/v1/cohort-64/cards';
 
 
 const formAddCardValidator = new FormValidator(cfg, addForm);
@@ -27,7 +28,25 @@ formAddCardValidator.enableValidation();
 const formProfileValidator = new FormValidator(cfg, popupProfileForm);
 formProfileValidator.enableValidation();
 
-// Открываем попап изображения по клику
+
+fetch('https://nomoreparties.co/v1/cohort-64/users/me', {
+  headers: {
+    authorization: 'f8dda380-44f0-48ca-95cc-9cd738f6ebff'
+  }
+})
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
 
 const handleCardClick = (name, link) => {
 popupWithImage.open(name, link);
@@ -39,26 +58,48 @@ const createCard = (item) => {
   return cardElement;
 }
 
-// Добавляем карточки 
+// const section = new Section({
+//   items: initialCards,
+//   renderer: (item) => {
+//     const cardElement = createCard(item)
+//     section.addItem(cardElement);
+//     return cardElement;
+//   }
+// }, '.elements');
+
+// section.render();
 
 const section = new Section({
-  items: initialCards,
   renderer: (item) => {
-    const cardElement = createCard(item)
+    const cardElement = createCard(item);
     section.addItem(cardElement);
     return cardElement;
   }
 }, '.elements');
 
+fetch(initialCardsUrl, {
+  headers: {
+    authorization: 'f8dda380-44f0-48ca-95cc-9cd738f6ebff'
+  }
+})
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  })
+  .then(cards => {
+    cards.forEach(card => {
+      section.addItem(createCard(card));
+    });
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
 section.render();
 
-
-// Создаем экземпляр PopupWithImage
-
 const popupWithImage = new PopupWithImage('.popup-img');
-
-
-// Создаем экземпляр UserInfo
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
@@ -73,8 +114,6 @@ const editProfilePopupWithForm = new PopupWithForm (
 );
 
 editProfilePopupWithForm.setResetFormOnClose(false)
-
-// Добавление новых карточек
 
 const addCardPopupWithForm = new PopupWithForm(
     ({ name, link }) => {
