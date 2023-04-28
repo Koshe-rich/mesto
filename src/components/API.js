@@ -21,7 +21,7 @@ export class API {
       .catch((err) => {
         console.error(err);
       });
-  }
+  } 
 
   getCardData() {
     return fetch(`${this.address}${this.groupId}/cards`, {
@@ -61,6 +61,28 @@ export class API {
         console.error(err);
       });
   }
+
+  addCard({ name, link }) {
+    return fetch(`${this.address}${this.groupId}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this.token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, link }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  
 }
 
 
