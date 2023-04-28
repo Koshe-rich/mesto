@@ -8,8 +8,9 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js'
 import "./index.css"
-// import { initialCards } from '../scripts/dataCards.js';
+import { initialCards } from '../scripts/dataCards.js';
 import { API } from '../components/API.js';
+import { token } from '../scripts/constant.js'
 
 
 const body = document.querySelector('.page');
@@ -39,50 +40,45 @@ const formChangePhotoValidator = new FormValidator(cfg, popupFormChangePhoto);
 formChangePhotoValidator.enableValidation();
 
 const api = new API({
-  baseUrl: 'https://nomoreparties.co/v1/cohort-64',
-  headers: {
-    authorization: 'f8dda380-44f0-48ca-95cc-9cd738f6ebff',
-    'Content-Type': 'application/json'
-  }
-});
+  address: 'https://mesto.nomoreparties.co/v1/',
+  token: token,
+  groupId: `cohort-64`,
+  });
 
-api.getUserInfo()
+
+  // получаем инфо по пользователю 
+
+  api.getUserData()
   .then(data => {
-    console.log(data);
+    userInfo.setUserInfo(data);
   })
-  .catch(error => {
-    console.log(error);
-  });
+  .catch(error => console.error(error));
 
-  api.getInitialCards()
+
+  // загружаем карточки 
+
+    api.getCardData()
   .then(cards => {
-    cards.forEach(card => {
-      section.addItem(createCard(card));
-    });
+    const section = new Section({
+      items: cards,
+      renderer: (item) => {
+        const card = new Card(item, '#template-item', handleCardClick);
+        const cardElement = card.createCard();
+        section.addItem(cardElement);
+        return cardElement;
+      }
+    }, '.elements');
+
+    section.render();
   })
-  .catch(error => {
-    console.log(error);
-  });
+  .catch(error => console.error(error));
+
 
 const handleCardClick = (name, link) => {
-popupWithImage.open(name, link);
+  popupWithImage.open(name, link);
 }
 
-const createCard = (item) => {
-  const card = new Card(item, '#template-item', handleCardClick);
-  const cardElement = card.createCard();
-  return cardElement;
-}
-
-const section = new Section({
-  renderer: (item) => {
-    const cardElement = createCard(item);
-    section.addItem(cardElement);
-    return cardElement;
-  }
-}, '.elements');
-
-section.render();
+// ----------------------------------
 
 const popupWithImage = new PopupWithImage('.popup-img');
 
@@ -92,12 +88,29 @@ const userInfo = new UserInfo({
 });
 
 
+// const editProfilePopupWithForm = new PopupWithForm(
+//   (userData) => {
+//     editProfilePopupWithForm.renderLoading(true);
+//     api.editUserInfo(userData)
+//       .then(data => {
+//         userInfo.setUserInfo(data);
+//       })
+//       .catch(error => {
+//         console.log(error);
+//       })
+//       .finally(() => {
+//         editProfilePopupWithForm.renderLoading(false);
+//       });
+//   },
+//   '.popup-edit-profile'
+// );
+
 const editProfilePopupWithForm = new PopupWithForm(
   (userData) => {
     editProfilePopupWithForm.renderLoading(true);
-    api.editUserInfo(userData)
-      .then(data => {
-        userInfo.setUserInfo(data);
+    api.updateUserData(userData)
+      .then(({name, about}) => {
+        userInfo.setUserInfo({name, about});
       })
       .catch(error => {
         console.log(error);
@@ -151,9 +164,9 @@ const changeAvatarPopup = new PopupWithForm(
 
 
 function openProfilePopup() {
-  const {name, job} = userInfo.getUserInfo();
+  const {name, about} = userInfo.getUserInfo();
   popupProfileForm.elements.name.value = name;
-  popupProfileForm.elements.job.value = job;
+  popupProfileForm.elements.about.value = about;
   formProfileValidator.resetValidationErrors();
   formProfileValidator.toggleButtonState();
   editProfilePopupWithForm.open();
