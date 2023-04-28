@@ -83,6 +83,62 @@ export class API {
       });
   }
   
+  deleteCard(cardId) {
+    return fetch(`${this.address}${this.groupId}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this.token
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  addLike(cardId) {
+    return fetch(`${this.address}${this.groupId}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: this.token,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  deleteLike(cardId) {
+    return fetch(`${this.address}${this.groupId}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this.token,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
 

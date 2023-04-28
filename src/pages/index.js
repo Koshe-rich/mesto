@@ -58,12 +58,16 @@ const handleCardClick = (name, link) => {
   popupWithImage.open(name, link);
 };
 
-const createCard = (item) => {
-  const card = new Card(item, '#template-item', handleCardClick);
-  const cardElement = card.createCard();
-  return cardElement;
-};
+// const createCard = (item) => {
+//   const card = new Card(item, '#template-item', handleCardClick);
+//   const cardElement = card.createCard();
+//   return cardElement;
+// };
 
+const createCard = (item) => {
+  const card = new Card(item, '#template-item', handleCardClick, handleCardLike, handleCardDelete, api.getUserId());
+  return card.createCard();
+};
 // Подгрузка карточек через API
 
 api.getCardData()
@@ -78,6 +82,10 @@ const section = new Section({
   }
 }, '.elements');
 
+
+// лайки
+
+// попап удаления карточки
 
 const popupWithImage = new PopupWithImage('.popup-img');
 
@@ -109,15 +117,15 @@ editProfilePopupWithForm.setResetFormOnClose(false);
 
 const addCardPopupWithForm = new PopupWithForm(
   ({ name, link }) => {
+    const cardElement = createCard({name, link});
+    section.addItem(cardElement);
     addCardPopupWithForm.renderLoading(true);
     api.addCard({ name, link })
-      .then((card) => {
-        const cardElement = createCard(card);
-        section.addItem(cardElement);
-        addCardPopupWithForm.close();
+      .then((cardData) => {
+        console.log('Card added successfully:', cardData);
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.error('Error adding card:', error);
       })
       .finally(() => {
         addCardPopupWithForm.renderLoading(false);
@@ -125,6 +133,7 @@ const addCardPopupWithForm = new PopupWithForm(
   },
   '.popup-add-card'
 );
+
 
 
 function openProfilePopup() {
