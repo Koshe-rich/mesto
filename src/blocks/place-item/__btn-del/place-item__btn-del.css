@@ -10,7 +10,7 @@
   height: 19px;
   cursor: pointer;
   border: none;
-
+  display: none;
 }
 
 .place-item__btn-del:hover {
