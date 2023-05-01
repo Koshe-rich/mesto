@@ -70,11 +70,11 @@ const createCard = (item) => {
 // };
 // Подгрузка карточек через API
 
-api.getCardData()
-  .then(cards => {
-    section.renderItems(cards);
-  })
-  .catch(error => console.error(error));
+// api.getCardData()
+//   .then(cards => {
+//     section.render(cards);
+//   })
+//   .catch(error => console.error(error));
 
 const section = new Section({
   renderer: (item) => {
@@ -82,6 +82,17 @@ const section = new Section({
   }
 }, '.elements');
 
+
+api.getCardData()
+  .then(cards => {
+    const section = new Section({
+      renderer: (item) => {
+        section.addItem(createCard(item));
+      }
+    }, '.elements', cards);
+    section.render();
+  })
+  .catch(error => console.error(error));
 
 // лайки
 
