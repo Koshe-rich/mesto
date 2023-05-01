@@ -21,7 +21,28 @@ export class API {
       .catch((err) => {
         console.error(err);
       });
-  } 
+  }
+
+  updateAvatar(avatar) {
+    return fetch(`${this.address}${this.groupId}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: this.token,
+      },
+      body: JSON.stringify({ avatar }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 
   getCardData() {
     return fetch(`${this.address}${this.groupId}/cards`, {
