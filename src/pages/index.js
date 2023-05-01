@@ -58,16 +58,16 @@ const handleCardClick = (name, link) => {
   popupWithImage.open(name, link);
 };
 
-// const createCard = (item) => {
-//   const card = new Card(item, '#template-item', handleCardClick);
-//   const cardElement = card.createCard();
-//   return cardElement;
-// };
-
 const createCard = (item) => {
-  const card = new Card(item, '#template-item', handleCardClick, handleCardLike, handleCardDelete, api.getUserId());
-  return card.createCard();
+  const card = new Card(item, '#template-item', handleCardClick);
+  const cardElement = card.createCard();
+  return cardElement;
 };
+
+// const createCard = (item) => {
+//   const card = new Card(item, '#template-item', handleCardClick, handleCardLike, handleCardDelete, api.getUserId());
+//   return card.createCard();
+// };
 // Подгрузка карточек через API
 
 api.getCardData()
