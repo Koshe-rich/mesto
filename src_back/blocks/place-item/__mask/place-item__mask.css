@@ -1,0 +1,11 @@
+.place-item__mask {
+    display: block;
+    object-fit: cover;
+    width: 282px;
+    height: 282px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}

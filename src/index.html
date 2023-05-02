@@ -51,6 +51,7 @@
   <div class="popup popup-delete-card">
     <button class="popup__btn-close popup__close" type="button"></button>
     <form action="#" class="popup__form popup__form-delete-card" method="post" name="profile-popup" novalidate>
+      <input type="hidden" value="" name="id" class="popup__input" id="delete-card-id">
       <h2 class="popup__head">Вы уверены?</h2>
       <button type="submit" class="popup__btn-save popup__btn-add" id="btn-delete">Да</button>
     </form>
@@ -64,7 +65,7 @@
       <input type="text" class="popup__input popup__input_line_name" id="input-title" name="name" placeholder="Название"
         minlength="2" maxlength="30" required>
       <span class="popup__error" id="input-title-error"></span>
-      <input type="url" class="popup__input popup__input_line_description" id="input-card" name="link"
+      <input type="url" class="popup__input popup__input_line_description" id="input-link" name="link"
         placeholder="Ссылка на картинку" required>
       <span class="popup__error" id="input-link-error"></span>
       <button type="submit" class="popup__btn-save popup__btn-add popup__btn-save_disabled" id="btn-create">Создать</button>

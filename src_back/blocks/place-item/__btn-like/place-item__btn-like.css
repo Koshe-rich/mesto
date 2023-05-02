@@ -1,0 +1,16 @@
+.place-item__btn-like {
+    background-image: url(../../../images/like.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 22px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    height: 19px;
+    padding: 0;
+}
+
+.place-item__btn-like:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

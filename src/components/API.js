@@ -1,163 +1,89 @@
 export class API {
-  constructor({ address, token, groupId }) {
-    this.address = address;
-    this.token = token;
-    this.groupId = groupId;
+  constructor(baseUrl, headers) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+  }
+
+  __checkResponse(response) {
+    return response.ok ? response.json() : Promise.reject(new Error(`${response.status} ${response.statusText}`));
+  }
+
+  __request(slug, options = {}) {
+    const url = `${this._baseUrl}${slug}`;
+    const fetchOptions = {
+      headers: { ...this._headers },
+      ...options,
+    }
+
+    return fetch(url, fetchOptions).then(this.__checkResponse);
   }
 
   getUserData() {
-    return fetch(`${this.address}${this.groupId}/users/me`, {
-      headers: {
-        authorization: this.token,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const slug = `/users/me`;
+
+    return this.__request(slug);
   }
 
   updateAvatar(avatar) {
-    return fetch(`${this.address}${this.groupId}/users/me/avatar`, {
+    const slug = `/users/me/avatar`;
+    const options = {
       method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: this.token,
-      },
       body: JSON.stringify({ avatar }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    };
+
+    return this.__request(slug, options);
   }
 
   getCardData() {
-    return fetch(`${this.address}${this.groupId}/cards`, {
-      headers: {
-        authorization: this.token,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const slug = `/cards`;
+
+    return this.__request(slug);
   }
 
   updateUserData({ name, about }) {
-    return fetch(`${this.address}${this.groupId}/users/me`, {
+    const slug = `/users/me`;
+    const options = {
       method: 'PATCH',
-      headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({ name, about }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    };
+
+    return this.__request(slug, options);
   }
 
   addCard({ name, link }) {
-    return fetch(`${this.address}${this.groupId}/cards`, {
+    const slug = `/cards`;
+    const options = {
       method: 'POST',
-      headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({ name, link }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    };
+
+    return this.__request(slug, options);
   }
   
   deleteCard(cardId) {
-    return fetch(`${this.address}${this.groupId}/cards/${cardId}`, {
+    const slug = `/cards/${cardId}`;
+    const options = {
       method: 'DELETE',
-      headers: {
-        authorization: this.token
-      }
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    };
+
+    return this.__request(slug, options);
   }
 
   addLike(cardId) {
-    return fetch(`${this.address}${this.groupId}/cards/${cardId}/likes`, {
+    const slug = `/cards/${cardId}/likes`;
+    const options = {
       method: 'PUT',
-      headers: {
-        authorization: this.token,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    };
+
+    return this.__request(slug, options);
   }
 
   deleteLike(cardId) {
-    return fetch(`${this.address}${this.groupId}/cards/${cardId}/likes`, {
+    const slug = `/cards/${cardId}/likes`;
+    const options = {
       method: 'DELETE',
-      headers: {
-        authorization: this.token,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(new Error(`${response.status} ${response.statusText}`));
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    };
+
+    return this.__request(slug, options);
   }
 }

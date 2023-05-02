@@ -1,0 +1,15 @@
+.profile__avatar-photo {
+    width: 120px;
+    height: 120px;
+    margin: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    .profile__avatar-photo{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+

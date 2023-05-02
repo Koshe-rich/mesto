@@ -10,7 +10,7 @@ import { UserInfo } from '../components/UserInfo.js'
 import "./index.css"
 import { initialCards } from '../scripts/dataCards.js';
 import { API } from '../components/API.js';
-import { token } from '../scripts/constant.js'
+import { token, apiUrl } from '../scripts/constant.js';
 import { Popup } from '../components/Popup.js';
 
 
@@ -42,53 +42,40 @@ formProfileValidator.enableValidation();
 const formChangePhotoValidator = new FormValidator(cfg, popupFormChangePhoto);
 formChangePhotoValidator.enableValidation();
 
-const api = new API({
-  address: 'https://mesto.nomoreparties.co/v1/',
-  token: token,
-  groupId: `cohort-64`,
-});
+const api = new API(
+  apiUrl,
+  {
+    authorization: token,
+    'Content-Type': 'application/json',
+  },
+);
 
+const deleteCardPopup = new PopupWithForm(
+  () => {},
+  '.popup-delete-card',
+);
 
-  // получаем инфо по пользователю 
-const updateAvatar = (url) => avatarImage.src = url;
-
-api.getUserData()
-  .then(data => {
-    userInfo.setUserInfo(data);
-
-    if (data.avatar) {
-      updateAvatar(data.avatar);
-    }
-  })
-  .catch(error => console.error(error));
-
-const handleCardClick = (name, link) => {
-  popupWithImage.open(name, link);
-};
-const handleLikeClick = (id, putOrRemove) => {
-  const method = putOrRemove ? 'addLike' : 'deleteLike';
-
-  return api[method](id)
-    .then(({ likes }) => likes);
-};
+deleteCardPopup.setResetFormOnClose(true);
+deleteCardPopup.setEventListeners();
 
 const handleDeleteClickFn = (id) => {
   return new Promise((resolve, reject) => {
-    const deleteCardPopup = new PopupWithForm(
-      () => {
-        deleteCardPopup.renderLoading(true);
-    
-        api.deleteCard(id)
-          .then(resolve)
-          .catch(reject)
-          .finally(() => {
-            deleteCardPopup.renderLoading(false);
-          });
-      },
-      '.popup-delete-card',
-    );
+    const callback = ({ id }) => {
+      deleteCardPopup.renderLoading(true);
+  
+      return api.deleteCard(id)
+        .then(resolve)
+        .catch((error) => {
+          console.error(error);
+          reject(error);
+        })
+        .finally(() => {
+          deleteCardPopup.renderLoading(false);
+        });
+    };
 
-    deleteCardPopup.setEventListeners();
+    document.querySelector("#delete-card-id").value = id;
+    deleteCardPopup.setCallback(callback);
     deleteCardPopup.open();
   });
 };
@@ -101,53 +88,51 @@ const createCard = (item) => {
   return cardElement;
 };
 
-// const createCard = (item) => {
-//   const card = new Card(item, '#template-item', handleCardClick, handleCardLike, handleCardDelete, api.getUserId());
-//   return card.createCard();
-// };
-// Подгрузка карточек через API
-
-// api.getCardData()
-//   .then(cards => {
-//     section.render(cards);
-//   })
-//   .catch(error => console.error(error));
-
 const section = new Section({
   renderer: (item) => {
     section.addItem(createCard(item));
   }
 }, '.elements');
 
-
-api.getCardData()
-  .then(cards => {
-    const section = new Section({
-      renderer: (item) => {
-        section.addItem(createCard(item));
-      }
-    }, '.elements', cards);
-    section.render();
-  })
-  .catch(error => console.error(error));
-
-// лайки
-
-// попап удаления карточки
-
-const popupWithImage = new PopupWithImage('.popup-img');
-
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
-  infoSelector: '.profile__description'
+  infoSelector: '.profile__description',
+  avatarSelector: '.profile__avatar-photo',
 });
 
+// получаем инфо по пользователю и карточкам асинхронно
+Promise.all([
+    api.getUserData(),
+    api.getCardData(),
+  ])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+
+    const section = new Section({
+      renderer: (item) => section.addItem(createCard(item)),
+    }, '.elements', cards);
+
+    section.render();
+  });
+
+const handleCardClick = (name, link) => {
+  popupWithImage.open(name, link);
+};
+const handleLikeClick = (id, putOrRemove) => {
+  const method = putOrRemove ? 'addLike' : 'deleteLike';
+
+  return api[method](id)
+    .then(({ likes }) => likes);
+};
+
+const popupWithImage = new PopupWithImage('.popup-img');
 const editProfilePopupWithForm = new PopupWithForm(
   (userData) => {
     editProfilePopupWithForm.renderLoading(true);
-    api.updateUserData(userData)
-      .then(({name, about}) => {
-        userInfo.setUserInfo({name, about});
+
+    return api.updateUserData(userData)
+      .then((data) => {
+        userInfo.setUserInfo(data);
       })
       .catch(error => {
         console.log(error);
@@ -166,7 +151,8 @@ editProfilePopupWithForm.setResetFormOnClose(false);
 const addCardPopupWithForm = new PopupWithForm(
   ({ name, link }) => {
     addCardPopupWithForm.renderLoading(true);
-    api.addCard({ name, link })
+
+    return api.addCard({ name, link })
     .then((cardData) => {
       const cardElement = createCard(cardData);
 
@@ -186,15 +172,22 @@ const addCardPopupWithForm = new PopupWithForm(
 const changeAvatarPopup = new PopupWithForm(
   ({ link }) => {
     changeAvatarPopup.renderLoading(true);
-    api.updateAvatar(link)
-      .then(() => updateAvatar(link))
-      .catch((error) => {
-        popupFormChangePhoto.querySelector(".popup__error").textContent = error.message;
+
+    return api.updateAvatar(link)
+      .then((data) => {
+        userInfo.setUserInfo(data);
       })
-      .finally(() => changeAvatarPopup.renderLoading(false));
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        changeAvatarPopup.renderLoading(false);
+      });
   },
   '.popup-change-photo',
 );
+changeAvatarPopup.setCloseCallback(() => changeAvatarButton.disabled = false);
+changeAvatarPopup.setOpenCallback(() => changeAvatarButton.disabled = true);
 
 function openProfilePopup() {
   const {name, about} = userInfo.getUserInfo();
