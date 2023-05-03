@@ -88,6 +88,12 @@ const createCard = (item) => {
   return cardElement;
 };
 
+const section = new Section({ 
+  renderer: (item) => { 
+    section.addItem(createCard(item)); 
+  } 
+}, '.elements');
+
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   infoSelector: '.profile__description',
@@ -102,11 +108,7 @@ Promise.all([
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData);
 
-    const section = new Section({
-      renderer: (item) => section.addItem(createCard(item)),
-    }, '.elements', cards);
-
-    section.render();
+    section.render(cards);
   });
 
 const handleCardClick = (name, link) => {
