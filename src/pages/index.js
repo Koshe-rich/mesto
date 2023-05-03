@@ -88,12 +88,6 @@ const createCard = (item) => {
   return cardElement;
 };
 
-const section = new Section({
-  renderer: (item) => {
-    section.addItem(createCard(item));
-  }
-}, '.elements');
-
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   infoSelector: '.profile__description',
@@ -186,8 +180,6 @@ const changeAvatarPopup = new PopupWithForm(
   },
   '.popup-change-photo',
 );
-changeAvatarPopup.setCloseCallback(() => changeAvatarButton.disabled = false);
-changeAvatarPopup.setOpenCallback(() => changeAvatarButton.disabled = true);
 
 function openProfilePopup() {
   const {name, about} = userInfo.getUserInfo();
@@ -206,6 +198,8 @@ function openAddCardPopup() {
 
 function openChangeAvatarPopup() {
   changeAvatarPopup.open();
+  formProfileValidator.resetValidationErrors();
+  formProfileValidator.toggleButtonState();
 }
 
 addCardPopupWithForm.setEventListeners();
