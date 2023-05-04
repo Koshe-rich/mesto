@@ -200,8 +200,8 @@ function openAddCardPopup() {
 
 function openChangeAvatarPopup() {
   changeAvatarPopup.open();
-  formProfileValidator.resetValidationErrors();
-  formProfileValidator.toggleButtonState();
+  formChangePhotoValidator.resetValidationErrors();
+  formChangePhotoValidator.toggleButtonState();
 }
 
 addCardPopupWithForm.setEventListeners();
