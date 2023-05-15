@@ -1,3 +1,3 @@
-export const token = 'f8dda380-44f0-48ca-95cc-9cd738f6ebff';
-export const groupId = `cohort-64`;
+export const token = 'ea148781-2904-4e1c-90dc-b8bb63ad9bc3';
+export const groupId = `cohort-66`;
 export const apiUrl = `https://mesto.nomoreparties.co/v1/${groupId}`;
